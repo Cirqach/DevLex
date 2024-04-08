@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_words"
+            android:icon="@drawable/lexicon"
+            android:title="Lexicon" />
+        <item
+            android:id="@+id/nav_statistic"
+            android:icon="@drawable/statistic"
+            android:title="Statistic" />
+
+
+    </group>
+    <group>
+        <item android:title="" />
+        <item
+            android:id="@+id/nav_true_false_test"
+            android:icon="@drawable/true_false"
+            android:title="True/False test" />
+        <item
+            android:id="@+id/nav_find_word_test"
+            android:icon="@drawable/find_word"
+            android:title="Find word test" />
+        <item
+            android:id="@+id/nav_find_translation_test"
+            android:icon="@drawable/find_translation"
+            android:title="Find translation test"
+
+            />
+    </group>
+
+</menu>
