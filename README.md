@@ -29,6 +29,7 @@ also can use this https://en.m.wikipedia.org/wiki/List_of_countries_and_dependen
 5. slider: https://www.fandroid.info/18-android-viewpager2/
 6. debugging https://developer.android.com/topic/performance/vitals/crash
 7. viewpager + SQLite https://stackoverflow.com/questions/46686061/how-to-load-sqlite-data-into-a-viewpager
+8. https://youtube.com/playlist?list=PLBcjj47fhbjXVBAm7z0ki-lfx3vqYNyTY&si=_LLnAyvv_jv34zBs
 
 #### Ideas
 1. добавить подсказки
