@@ -27,16 +27,17 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/latte_base"
+
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/mocha_base"
+        app:backgroundTint="@color/button_background_color"
+        android:backgroundTint="@color/latte_base"
         app:borderWidth="5dp"
         app:maxImageSize="30dp"
 
         app:rippleColor="@color/latte_base"
-        app:tint="@color/mocha_base" />
+        app:tint="@color/button_background_color" />
 
     <SearchView
         android:id="@+id/searchView"

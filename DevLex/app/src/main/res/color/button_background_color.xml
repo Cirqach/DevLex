@@ -2,15 +2,15 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--When Button is not enabled -->
-    <item android:color="#8839ef" android:state_enabled="false" />
+    <item android:color="#7287fd" android:state_enabled="false" />
 
     <!--When Button is in pressed state -->
-    <item android:color="#cba6f7" android:state_pressed="true" />
+    <item android:color="#40a02b" android:state_pressed="true" />
 
     <!--When Button is in selected state -->
-    <item android:color="#cba6f7" android:state_selected="true" />
+    <item android:color="#40a02b" android:state_selected="true" />
 
     <!--Default Background Color -->
-    <item android:color="#8839ef" />
+    <item android:color="#7287fd" />
 
 </selector>
