@@ -65,6 +65,7 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
             R.id.nav_find_translation_test -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, FindTranslationTestFragment()).commit()
+
             R.id.nav_edit_database -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, ChangeDatabaseFragment()).commit()
         }
@@ -72,13 +73,14 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         return true
     }
 
-     @Deprecated("Deprecated in Java")
-     override fun onBackPressed() {
-         super.onBackPressed()
-         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-             drawerLayout.closeDrawer(GravityCompat.START)
-         } else {
-             onBackPressedDispatcher.onBackPressed()
-         }
-     }
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
 }
+

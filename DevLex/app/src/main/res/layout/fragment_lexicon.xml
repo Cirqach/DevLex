@@ -27,15 +27,13 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-
+        android:backgroundTint="@color/latte_base"
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="@color/button_background_color"
-        android:backgroundTint="@color/latte_base"
         app:borderWidth="5dp"
         app:maxImageSize="30dp"
-
         app:rippleColor="@color/latte_base"
         app:tint="@color/button_background_color" />
 
@@ -54,4 +52,21 @@
         android:queryHint="Search"
 
         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lexicon_refresh_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/latte_base"
+        android:clickable="true"
+        app:backgroundTint="@color/button_background_color"
+        app:borderWidth="5dp"
+        app:maxImageSize="30dp"
+        app:rippleColor="@color/latte_base"
+        app:srcCompat="@drawable/refresh_database"
+        app:tint="@color/button_background_color" />
 </RelativeLayout>

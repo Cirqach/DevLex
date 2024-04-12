@@ -42,11 +42,15 @@ class LexiconFragment : Fragment() {
             val intent = Intent(requireContext(), add_word_activity::class.java)
             startActivity(intent)
         }
+        val refresh_database_button: FloatingActionButton =
+            view.findViewById(R.id.lexicon_refresh_database)
+        refresh_database_button.setOnClickListener {
+            displayWord()
+        }
 
 
         recyclerView = view.findViewById(R.id.lexiconRecyclerView)
         dbh = DevLexDBHelper(view.context)
-        dbh.copyDatabase(view.context)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.setHasFixedSize(true)
         displayWord()
@@ -76,7 +80,8 @@ class LexiconFragment : Fragment() {
             for (i in newArry) {
                 if (i.english_name.lowercase(Locale.ROOT).contains(query) ||
                     i.russian_name.lowercase(Locale.ROOT).contains(query) ||
-                    i.definition.lowercase(Locale.ROOT).contains(query)
+                    i.definition.lowercase(Locale.ROOT).contains(query) ||
+                    i.id.toString().contains(query)
                 ) {
                     filteredList.add(i)
                 }
@@ -97,7 +102,8 @@ class LexiconFragment : Fragment() {
             val uenglish_name = newcursor.getString(1)
             val urussian_name = newcursor.getString(2)
             val udefinition = newcursor.getString(3)
-            newArry.add(DataList(uenglish_name, urussian_name, udefinition))
+            val uid = newcursor.getString(0)
+            newArry.add(DataList(uenglish_name, urussian_name, udefinition, uid))
         }
         recyclerView.adapter = DevLexAdapter(newArry)
     }

@@ -6,7 +6,7 @@ class DevLexDatabaseContract {
 
     object LexiconEntry : BaseColumns {
         const val TABLE_NAME = "lexicon_table"
-        const val _ID = BaseColumns._ID
+        const val ID = BaseColumns._ID
         const val WORD_DEFENITION = "WORD_DEFENITION"
         const val ENGLISH_NAME = "ENGLISH_NAME"
         const val RUSSIAN_NAME = "RUSSIAN_NAME"

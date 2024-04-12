@@ -53,30 +53,29 @@
         android:layout_width="130dp"
         android:layout_height="70dp"
         android:layout_marginTop="60dp"
+        android:backgroundTint="@color/button_background_color"
         android:fontFamily="@font/poppins_medium"
         android:foreground="@null"
         android:text="Add"
         android:textAlignment="center"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
-        android:backgroundTint="@color/button_background_color"
         android:visibility="visible"
+        app:icon="@drawable/free_icon_add_square_outlined_interface_button_54731"
         app:layout_constraintEnd_toEndOf="@+id/defenition_edit_text"
         app:layout_constraintStart_toStartOf="@+id/defenition_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/defenition_edit_text"
-        app:icon="@drawable/free_icon_add_square_outlined_interface_button_54731"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/defenition_edit_text" />
 
 
     <Button
         android:id="@+id/go_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
         android:backgroundTint="@color/button_background_color"
         android:clickable="true"
         android:focusable="true"
         android:scaleType="fitCenter"
+        android:text="Back"
 
         android:textColor="@color/latte_base"
         app:icon="@drawable/back"

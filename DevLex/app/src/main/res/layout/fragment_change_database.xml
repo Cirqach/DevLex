@@ -103,18 +103,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/crud_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_background_color"
-        android:text="Back"
-        android:textColor="@color/button_text_color"
-        android:textSize="20dp"
-        app:icon="@drawable/back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
@@ -124,5 +112,36 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crud_recycler_view" />
+
+    <TextView
+        android:id="@+id/crud_id_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="1"
+        android:textColor="@color/dark_text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/crud_english_name_edit_text_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crud_recycler_view" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/crud_refresh_database_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/latte_base"
+        android:clickable="true"
+        app:backgroundTint="@color/button_background_color"
+        app:borderWidth="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/crud_search_view"
+        app:layout_constraintTop_toTopOf="@+id/crud_search_view"
+        app:maxImageSize="30dp"
+        app:rippleColor="@color/latte_base"
+        app:srcCompat="@drawable/refresh_database"
+        app:tint="@color/button_background_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

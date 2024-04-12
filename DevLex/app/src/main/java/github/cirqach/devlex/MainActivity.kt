@@ -8,8 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import github.cirqach.devlex.data.DevLexDBHelper
+
 
 class MainActivity : AppCompatActivity() {
+    private val dbh = DevLexDBHelper(this)
+    private val REQUEST_CODE_STORAGE_PERMISSION = 123  // Choose a unique integer code
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,4 +39,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
     }
+
+
+
+
+
 }

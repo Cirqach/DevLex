@@ -1,6 +1,5 @@
 package github.cirqach.devlex
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
@@ -29,10 +28,9 @@ class add_word_activity : AppCompatActivity() {
             insets
         }
 
-        val go_back_button: Button = findViewById(R.id.go_back_button)
-        go_back_button.setOnClickListener {
-            val randomIntent = Intent(this, RealMainActivity::class.java)
-            startActivity(randomIntent)
+        val goBackButton = findViewById<Button>(R.id.go_back_button)
+        goBackButton.setOnClickListener {
+            onBackPressed()
         }
 
         english_name = findViewById(R.id.english_name_edit_text)
@@ -47,16 +45,15 @@ class add_word_activity : AppCompatActivity() {
             val russianName_text = russian_name.text.toString()
             val definition_text = definition.text.toString()
             val savedata = db.addDataToLexicon(englishName_text, russianName_text, definition_text)
-            if (TextUtils.isEmpty(englishName_text) || TextUtils.isEmpty(russianName_text) || TextUtils.isEmpty(
-                    definition_text
-                )
-            ) {
-                Toast.makeText(this, "YOU CANT LEAVE ", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(englishName_text) || TextUtils.isEmpty(russianName_text)) {
+                Toast.makeText(this, "You can't leave empty field", Toast.LENGTH_SHORT).show()
             } else if (savedata == true) {
-                Toast.makeText(this, "Add word to lexicon", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Word added to lexicon", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Already exist", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "This words already exist", Toast.LENGTH_SHORT).show()
             }
+            onBackPressed()
+
         }
 
 
