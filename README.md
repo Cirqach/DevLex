@@ -27,4 +27,5 @@ also can use this https://en.m.wikipedia.org/wiki/List_of_countries_and_dependen
 6. debugging https://developer.android.com/topic/performance/vitals/crash
 7. viewpager + SQLite https://stackoverflow.com/questions/46686061/how-to-load-sqlite-data-into-a-viewpager
 8. https://youtube.com/playlist?list=PLBcjj47fhbjXVBAm7z0ki-lfx3vqYNyTY&si=_LLnAyvv_jv34zBs
+9. https://stackoverflow.com/questions/69940973/how-to-copy-in-kotlin-from-assets-folder-to-external-or-internal-storage-android
 
