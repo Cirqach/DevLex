@@ -7,6 +7,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
+
 
 class DevLexDBHelper(context: Context?) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -18,15 +23,7 @@ class DevLexDBHelper(context: Context?) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val SQL_CREATE_WORD_TABLE =
-            "CREATE TABLE " + DevLexDatabaseContract.LexiconEntry.TABLE_NAME + " (" +
-                    DevLexDatabaseContract.LexiconEntry.ID + " INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " +
-                    DevLexDatabaseContract.LexiconEntry.ENGLISH_NAME + " TEXT NOT NULL , " +
-                    DevLexDatabaseContract.LexiconEntry.RUSSIAN_NAME + " TEXT NOT NULL , " +
-                    DevLexDatabaseContract.LexiconEntry.WORD_DEFENITION + " TEXT);"
-        db.execSQL(SQL_CREATE_WORD_TABLE)
 
-        fillDataBase(db)
         Log.d(LOG_TAG, "onCreate: path to database " + db.path)
 
     }
@@ -142,7 +139,7 @@ class DevLexDBHelper(context: Context?) :
 
 
     // WTF
-    private fun fillDataBase(db: SQLiteDatabase) {
+    fun fillDataBase(db: SQLiteDatabase) {
 
 
         db.execSQL("INSERT INTO lexicon_table (ENGLISH_NAME, RUSSIAN_NAME, WORD_DEFENITION) VALUES ('flow', 'течь/литься', '')")

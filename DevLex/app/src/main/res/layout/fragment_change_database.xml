@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/latte_base"
-    tools:context=".ChangeDatabaseFragment">
+    tools:context=".app_pages.ChangeDatabaseFragment">
 
     <Button
         android:id="@+id/crud_save_button"

@@ -1,6 +1,5 @@
 package github.cirqach.devlex
 
-import LexiconFragment
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -9,6 +8,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import github.cirqach.devlex.app_pages.ChangeDatabaseFragment
+import github.cirqach.devlex.app_pages.LexiconFragment
+import github.cirqach.devlex.app_pages.StatisticFragment
+import github.cirqach.devlex.app_pages.tests.FindTranslationTestFragment
+import github.cirqach.devlex.app_pages.tests.FindWordTestFragment
+import github.cirqach.devlex.app_pages.tests.TrueFalseTestFragment
 
 class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout

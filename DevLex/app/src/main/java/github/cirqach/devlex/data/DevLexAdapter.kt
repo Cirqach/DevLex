@@ -21,7 +21,8 @@ class DevLexAdapter(private var wordList: ArrayList<DataList>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DevLexViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.lexicon_recyclerview_item, parent, false)
         return DevLexViewHolder(itemView)
     }
 

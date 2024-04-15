@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/latte_base"
-    tools:context=".add_word_activity">
+    tools:context=".app_pages.add_word_activity">
 
     <EditText
         android:id="@+id/english_name_edit_text"

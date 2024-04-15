@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app_pages.tests.FindWordTestActivity">
+
+    <TextView
+        android:id="@+id/find_word_activity_random_definition_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Random defenition"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/find_word_activity_word_1_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="English word 1"
+        android:textColor="@color/button_text_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/find_word_activity_random_definition_text_view"
+        app:layout_constraintStart_toStartOf="@+id/find_word_activity_random_definition_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/find_word_activity_random_definition_text_view" />
+
+    <Button
+        android:id="@+id/find_word_activity_word_2_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="English word 2"
+        android:textColor="@color/button_text_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/find_word_activity_word_1_button"
+        app:layout_constraintStart_toStartOf="@+id/find_word_activity_word_1_button"
+        app:layout_constraintTop_toBottomOf="@+id/find_word_activity_word_1_button" />
+
+    <Button
+        android:id="@+id/find_word_activity_word_3_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="English word 3"
+        android:textColor="@color/button_text_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/find_word_activity_word_2_button"
+        app:layout_constraintStart_toStartOf="@+id/find_word_activity_word_2_button"
+        app:layout_constraintTop_toBottomOf="@+id/find_word_activity_word_2_button" />
+
+    <Button
+        android:id="@+id/find_word_activity_word_4_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="English word 4"
+        android:textColor="@color/button_text_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/find_word_activity_word_3_button"
+        app:layout_constraintStart_toStartOf="@+id/find_word_activity_word_3_button"
+        app:layout_constraintTop_toBottomOf="@+id/find_word_activity_word_3_button" />
+
+    <Button
+        android:id="@+id/find_word_activity_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_background_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        android:text="Back"
+        android:textColor="@color/latte_base"
+        android:textSize="20sp"
+        app:icon="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
