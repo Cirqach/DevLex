@@ -29,4 +29,6 @@ also can use this https://en.m.wikipedia.org/wiki/List_of_countries_and_dependen
 8. https://youtube.com/playlist?list=PLBcjj47fhbjXVBAm7z0ki-lfx3vqYNyTY&si=_LLnAyvv_jv34zBs
 9. https://stackoverflow.com/questions/69940973/how-to-copy-in-kotlin-from-assets-folder-to-external-or-internal-storage-android
 10. https://stackoverflow.com/questions/52076779/kotlin-custom-dialog-in-android
+11. https://developer.android.com/training/data-storage/room
+12. https://developer.android.com/training/data-storage/app-specific
 
