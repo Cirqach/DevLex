@@ -8,12 +8,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import github.cirqach.devlex.app_pages.ChangeDatabaseFragment
-import github.cirqach.devlex.app_pages.LexiconFragment
-import github.cirqach.devlex.app_pages.StatisticFragment
-import github.cirqach.devlex.app_pages.tests.FindTranslationTestFragment
-import github.cirqach.devlex.app_pages.tests.FindWordTestFragment
-import github.cirqach.devlex.app_pages.tests.TrueFalseTestFragment
 
 class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
@@ -47,7 +41,7 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LexiconFragment()).commit()
+                .replace(R.id.fragment_container, github.cirqach.devlex.app_pages.fragments.LexiconFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_words)
         }
 
@@ -57,22 +51,34 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_words -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LexiconFragment()).commit()
+                .replace(R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.LexiconFragment()
+                ).commit()
 
             R.id.nav_statistic -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, StatisticFragment()).commit()
+                .replace(R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.StatisticFragment()
+                ).commit()
 
             R.id.nav_true_false_test -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, TrueFalseTestFragment()).commit()
+                .replace(R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.tests.TrueFalseTestFragment()
+                ).commit()
 
             R.id.nav_find_word_test -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FindWordTestFragment()).commit()
+                .replace(R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.tests.FindWordTestFragment()
+                ).commit()
 
             R.id.nav_find_translation_test -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FindTranslationTestFragment()).commit()
+                .replace(R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.tests.FindTranslationTestFragment()
+                ).commit()
 
             R.id.nav_edit_database -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ChangeDatabaseFragment()).commit()
+                .replace(R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.ChangeDatabaseFragment()
+                ).commit()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import github.cirqach.devlex.R
-import github.cirqach.devlex.data.DevLexDBHelper
+import github.cirqach.devlex.database.DevLexDBHelper
 
 class add_word_activity : AppCompatActivity() {
 

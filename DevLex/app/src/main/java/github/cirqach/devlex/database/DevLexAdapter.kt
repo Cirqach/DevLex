@@ -1,4 +1,4 @@
-package github.cirqach.devlex.data
+package github.cirqach.devlex.database
 
 import android.view.LayoutInflater
 import android.view.View

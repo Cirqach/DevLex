@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="1"
-        android:textColor="@color/dark_text"
+        android:textColor="@color/latte_base"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/crud_english_name_edit_text_view"
         app:layout_constraintStart_toStartOf="parent"

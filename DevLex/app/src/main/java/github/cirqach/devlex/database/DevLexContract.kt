@@ -1,4 +1,4 @@
-package github.cirqach.devlex.data
+package github.cirqach.devlex.database
 
 import android.provider.BaseColumns
 

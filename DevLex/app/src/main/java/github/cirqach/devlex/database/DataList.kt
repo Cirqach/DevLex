@@ -1,4 +1,4 @@
-package github.cirqach.devlex.data
+package github.cirqach.devlex.database
 
 data class DataList(
     var english_name: String,

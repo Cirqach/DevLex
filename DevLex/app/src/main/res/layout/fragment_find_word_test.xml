@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app_pages.tests.FindWordTestFragment">
+    tools:context=".app_pages.fragments.tests.FindTranslationTestFragment">
 
     <TextView
         android:id="@+id/find_word_fragment_text_view"

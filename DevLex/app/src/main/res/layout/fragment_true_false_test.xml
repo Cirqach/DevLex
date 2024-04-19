@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app_pages.tests.TrueFalseTestFragment">
+    tools:context=".app_pages.fragments.tests.TrueFalseTestFragment">
 
     <TextView
         android:id="@+id/true_false_test_fragment_text_view"

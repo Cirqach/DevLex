@@ -19,10 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.cirqach.devlex.R
-import github.cirqach.devlex.data.DataList
-import github.cirqach.devlex.data.DevLexAdapter
-import github.cirqach.devlex.data.DevLexDBHelper
-import github.cirqach.devlex.data.DevLexDatabaseContract
+import github.cirqach.devlex.database.DataList
+import github.cirqach.devlex.database.DevLexAdapter
+import github.cirqach.devlex.database.DevLexDBHelper
+import github.cirqach.devlex.database.DevLexDatabaseContract
 import java.util.Locale
 
 

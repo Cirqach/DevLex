@@ -18,4 +18,5 @@ class FindTranlationTestActivity : AppCompatActivity() {
             insets
         }
     }
+
 }

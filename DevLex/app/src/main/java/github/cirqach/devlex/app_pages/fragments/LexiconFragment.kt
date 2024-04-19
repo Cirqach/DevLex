@@ -1,4 +1,4 @@
-package github.cirqach.devlex.app_pages
+package github.cirqach.devlex.app_pages.fragments
 
 import android.content.Intent
 import android.database.Cursor
@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.cirqach.devlex.R
-import github.cirqach.devlex.data.DataList
-import github.cirqach.devlex.data.DevLexAdapter
-import github.cirqach.devlex.data.DevLexDBHelper
+import github.cirqach.devlex.database.DataList
+import github.cirqach.devlex.database.DevLexAdapter
+import github.cirqach.devlex.database.DevLexDBHelper
 import java.util.Locale
 
 class LexiconFragment : Fragment() {
@@ -40,7 +40,7 @@ class LexiconFragment : Fragment() {
         val floatingActionButton: FloatingActionButton =
             view.findViewById(R.id.floatingActionButton)
         floatingActionButton.setOnClickListener {
-            val intent = Intent(requireContext(), add_word_activity::class.java)
+            val intent = Intent(requireContext(), github.cirqach.devlex.app_pages.add_word_activity::class.java)
             startActivity(intent)
         }
         val refresh_database_button: FloatingActionButton =
