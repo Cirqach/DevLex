@@ -1,5 +1,5 @@
 
-### It's my course project on second semester of second course.
+### It's my course project in college.
 
 **Main idea**: create app which will help to learn English programers words
 
