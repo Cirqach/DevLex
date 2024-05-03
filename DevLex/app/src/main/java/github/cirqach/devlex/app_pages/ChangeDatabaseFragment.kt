@@ -66,7 +66,9 @@ class ChangeDatabaseFragment : Fragment() {
         definition_edit_text = view.findViewById(R.id.crud_defenition_edit_text_view)
         id_text_view = view.findViewById(R.id.crud_id_text_view)
 
-        dbh = DevLexDBHelper(view.context)
+        if (view.context != null) {
+            dbh = DevLexDBHelper(view.context)
+        }
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.setHasFixedSize(true)
         displayWord()
@@ -92,7 +94,7 @@ class ChangeDatabaseFragment : Fragment() {
         delete_button.setOnClickListener {
             dbh.deleteData(
                 DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                english_edit_text.text.toString()
+                id_text_view.text.toString()
             )
             displayWord()
         }
@@ -142,7 +144,7 @@ class ChangeDatabaseFragment : Fragment() {
     }
 
     private fun displayWord() {
-        var newcursor: Cursor? = dbh.readAllDataFromLexicon()
+        var newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.LexiconEntry.TABLE_NAME)
         newArry = ArrayList<DataList>()
         while (newcursor!!.moveToNext()) {
             val uenglish_name = newcursor.getString(1)

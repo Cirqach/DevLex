@@ -16,6 +16,7 @@ import github.cirqach.devlex.R
 import github.cirqach.devlex.database.DataList
 import github.cirqach.devlex.database.DevLexAdapter
 import github.cirqach.devlex.database.DevLexDBHelper
+import github.cirqach.devlex.database.DevLexDatabaseContract
 import java.util.Locale
 
 class LexiconFragment : Fragment() {
@@ -40,7 +41,10 @@ class LexiconFragment : Fragment() {
         val floatingActionButton: FloatingActionButton =
             view.findViewById(R.id.floatingActionButton)
         floatingActionButton.setOnClickListener {
-            val intent = Intent(requireContext(), github.cirqach.devlex.app_pages.add_word_activity::class.java)
+            val intent = Intent(
+                requireContext(),
+                github.cirqach.devlex.app_pages.add_word_activity::class.java
+            )
             startActivity(intent)
         }
         val refresh_database_button: FloatingActionButton =
@@ -97,7 +101,7 @@ class LexiconFragment : Fragment() {
     }
 
     private fun displayWord() {
-        var newcursor: Cursor? = dbh.readAllDataFromLexicon()
+        var newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.LexiconEntry.TABLE_NAME)
         newArry = ArrayList<DataList>()
         while (newcursor!!.moveToNext()) {
             val uenglish_name = newcursor.getString(1)

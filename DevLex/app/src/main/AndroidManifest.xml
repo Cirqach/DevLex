@@ -22,7 +22,7 @@
             android:name=".app_pages.tests.FindWordTestActivity"
             android:exported="false" />
         <activity
-            android:name=".app_pages.tests.FindTranlationTestActivity"
+            android:name=".app_pages.tests.FindTranslationTest.FindTranlationTestActivity"
             android:exported="false" />
         <activity
             android:name=".app_pages.add_word_activity"

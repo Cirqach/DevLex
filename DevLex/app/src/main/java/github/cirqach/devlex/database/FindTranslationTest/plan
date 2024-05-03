@@ -1,0 +1,9 @@
+1. structure: (
+                datalist 1 {id, eng, rus, def},
+                datalist 2 {id, eng, rus, def},
+                datalist 3 {id, eng, rus, def}
+){
+    answered true/false
+}
+
+2.

@@ -16,7 +16,6 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_real_main)
-
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -41,7 +40,10 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, github.cirqach.devlex.app_pages.fragments.LexiconFragment()).commit()
+                .replace(
+                    R.id.fragment_container,
+                    github.cirqach.devlex.app_pages.fragments.LexiconFragment()
+                ).commit()
             navigationView.setCheckedItem(R.id.nav_words)
         }
 
@@ -51,32 +53,38 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_words -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
+                .replace(
+                    R.id.fragment_container,
                     github.cirqach.devlex.app_pages.fragments.LexiconFragment()
                 ).commit()
 
             R.id.nav_statistic -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
+                .replace(
+                    R.id.fragment_container,
                     github.cirqach.devlex.app_pages.fragments.StatisticFragment()
                 ).commit()
 
             R.id.nav_true_false_test -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
+                .replace(
+                    R.id.fragment_container,
                     github.cirqach.devlex.app_pages.fragments.tests.TrueFalseTestFragment()
                 ).commit()
 
             R.id.nav_find_word_test -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
+                .replace(
+                    R.id.fragment_container,
                     github.cirqach.devlex.app_pages.fragments.tests.FindWordTestFragment()
                 ).commit()
 
             R.id.nav_find_translation_test -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
+                .replace(
+                    R.id.fragment_container,
                     github.cirqach.devlex.app_pages.fragments.tests.FindTranslationTestFragment()
                 ).commit()
 
             R.id.nav_edit_database -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
+                .replace(
+                    R.id.fragment_container,
                     github.cirqach.devlex.app_pages.fragments.ChangeDatabaseFragment()
                 ).commit()
         }

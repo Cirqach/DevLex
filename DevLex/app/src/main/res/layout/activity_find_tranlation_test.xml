@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/latte_base"
-    tools:context=".app_pages.tests.FindTranlationTestActivity">
+    tools:context=".app_pages.tests.FindTranslationTest.FindTranlationTestActivity">
 
     <TextView
-        android:id="@+id/find_translation_random_word_text_view"
+        android:id="@+id/activity_find_translation_random_word_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/find_translation_translate_1"
+        android:id="@+id/activity_find_translation_variant_button_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
@@ -28,12 +28,12 @@
         android:text="Russian translate 1"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/find_translation_random_word_text_view"
-        app:layout_constraintStart_toStartOf="@+id/find_translation_random_word_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/find_translation_random_word_text_view" />
+        app:layout_constraintEnd_toEndOf="@+id/activity_find_translation_random_word_text_view"
+        app:layout_constraintStart_toStartOf="@+id/activity_find_translation_random_word_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/activity_find_translation_random_word_text_view" />
 
     <Button
-        android:id="@+id/find_translation_translate_2"
+        android:id="@+id/activity_find_translation_variant_button_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -41,12 +41,12 @@
         android:text="Russian translate 2"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/find_translation_translate_1"
-        app:layout_constraintStart_toStartOf="@+id/find_translation_translate_1"
-        app:layout_constraintTop_toBottomOf="@+id/find_translation_translate_1" />
+        app:layout_constraintEnd_toEndOf="@+id/activity_find_translation_variant_button_1"
+        app:layout_constraintStart_toStartOf="@+id/activity_find_translation_variant_button_1"
+        app:layout_constraintTop_toBottomOf="@+id/activity_find_translation_variant_button_1" />
 
     <Button
-        android:id="@+id/find_translation_translate_3"
+        android:id="@+id/activity_find_translation_variant_button_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -54,22 +54,9 @@
         android:text="Russian translate 3"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/find_translation_translate_2"
-        app:layout_constraintStart_toStartOf="@+id/find_translation_translate_2"
-        app:layout_constraintTop_toBottomOf="@+id/find_translation_translate_2" />
-
-    <Button
-        android:id="@+id/find_translation_translate_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:backgroundTint="@color/button_background_color"
-        android:text="Russian translate 4"
-        android:textColor="@color/button_text_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/find_translation_translate_3"
-        app:layout_constraintStart_toStartOf="@+id/find_translation_translate_3"
-        app:layout_constraintTop_toBottomOf="@+id/find_translation_translate_3" />
+        app:layout_constraintEnd_toEndOf="@+id/activity_find_translation_variant_button_2"
+        app:layout_constraintStart_toStartOf="@+id/activity_find_translation_variant_button_2"
+        app:layout_constraintTop_toBottomOf="@+id/activity_find_translation_variant_button_2" />
 
     <Button
         android:id="@+id/find_translation_back_button"
@@ -85,4 +72,27 @@
         app:icon="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_find_translation_test_question_count_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="1"
+        android:textColor="@color/dark_text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_find_translation_random_word_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/activity_find_translation_random_word_text_view"
+        app:layout_constraintTop_toTopOf="@+id/activity_find_translation_random_word_text_view" />
+
+    <Button
+        android:id="@+id/restartButton"
+        android:layout_width="345dp"
+        android:layout_height="81dp"
+        android:enabled="false"
+        android:text="Restart Quiz"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

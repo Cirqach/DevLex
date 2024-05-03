@@ -92,12 +92,15 @@ class ChangeDatabaseFragment : Fragment() {
         delete_button.setOnClickListener {
             dbh.deleteData(
                 DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                english_edit_text.text.toString()
+                id_text_view.text.toString()
             )
             displayWord()
         }
         add_button.setOnClickListener {
-            val intent = Intent(requireContext(), github.cirqach.devlex.app_pages.add_word_activity::class.java)
+            val intent = Intent(
+                requireContext(),
+                github.cirqach.devlex.app_pages.add_word_activity::class.java
+            )
             startActivity(intent)
         }
         save_button.setOnClickListener {
@@ -142,7 +145,7 @@ class ChangeDatabaseFragment : Fragment() {
     }
 
     private fun displayWord() {
-        var newcursor: Cursor? = dbh.readAllDataFromLexicon()
+        var newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.LexiconEntry.TABLE_NAME)
         newArry = ArrayList<DataList>()
         while (newcursor!!.moveToNext()) {
             val uenglish_name = newcursor.getString(1)
