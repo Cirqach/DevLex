@@ -1,27 +1,37 @@
 package github.cirqach.devlex.app_pages.tests.FindTranslationTest
 
+import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import github.cirqach.devlex.R
 import github.cirqach.devlex.database.DevLexDBHelper
 import github.cirqach.devlex.database.DevLexDatabaseContract
 import github.cirqach.devlex.database.FindTranslationTest.QuestionBaseHelper
-import kotlin.random.Random
+import github.cirqach.devlex.databinding.ActivityFindTranlationTestBinding
 
-class FindTranlationTestActivity : AppCompatActivity() {
+class FindTranlationTestActivity : AppCompatActivity(), View.OnClickListener {
+
+
+    private var mCurrentPosition: Int = 1 // Default and the first question position
+    private var mQuestionsList: MutableList<QuestionBaseHelper.Question?> = mutableListOf()
+    private var mSelectedOptionPosition: Int = 0
+    private var mCorrectAnswers: Int = 0
+
 
     private lateinit var binding: ActivityFindTranlationTestBinding
-    private var score = 0
-    private var currentQuestionIndex = 0
     private var dbh: DevLexDBHelper? = null
-    private var questionHelper: QuestionBaseHelper? = null
-    private var questions: QuestionBaseHelper.QuestionsBase? = null // Set to hold all questions
-    private var currentQuestion: QuestionBaseHelper.Question? = null // Current question object
+    private var questionHelper: QuestionBaseHelper = QuestionBaseHelper()
+    private var questionsList: MutableList<QuestionBaseHelper.Question?> =
+        mutableListOf() // Set to hold all questions
     private var questionsCount: Int = 0
     private val TAG: String = "find translation test"
 
@@ -34,132 +44,180 @@ class FindTranlationTestActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        questionHelper = QuestionBaseHelper()
         dbh = DevLexDBHelper(this)
-        if (dbh != null) {
-            questionsCount = intent.getIntExtra(
-                "count_of_test",
-                DevLexDBHelper.getTableRowCount(
-                    DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                    dbh!!
-                )
+        questionsCount = intent.getIntExtra(
+            "count_of_test",
+            DevLexDBHelper.getTableRowCount(
+                DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+                dbh!!
             )
-        }
+        )
 
-        if (questionHelper != null) {
-            questions =
-                questionHelper!!.getQuestionsBase(questionsCount, dbh) // Fetch all questions
-        }
+        mQuestionsList = questionHelper.getQuestionsList(dbh, questionsCount) // Fetch all questions
+        Log.d(TAG, "onCreate: question base is $questionsList")
         binding = ActivityFindTranlationTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        displayQuestion()
+        Log.d(TAG, "onCreate: ${questionHelper.getQuestionsList(dbh, questionsCount)}")
 
-        binding.activityFindTranslationVariantButton1.setOnClickListener { checkAnswer(0) }
-        binding.activityFindTranslationVariantButton2.setOnClickListener { checkAnswer(1) }
-        binding.activityFindTranslationVariantButton3.setOnClickListener { checkAnswer(2) }
-        binding.restartButton.setOnClickListener { restartQuiz() }
+        setQuestion()
+        binding.progressBar.max = questionsCount
+        binding.tvOptionOne.setOnClickListener(this)
+        binding.tvOptionTwo.setOnClickListener(this)
+        binding.tvOptionThree.setOnClickListener(this)
+        binding.btnSubmit.setOnClickListener(this)
     }
 
+    private fun setQuestion() {
 
-    fun showResult() {
-        Log.d(TAG, "showResult: showing result $score")
-        Toast.makeText(this, "Your result: $score", Toast.LENGTH_SHORT).show()
-        binding.restartButton.isEnabled = true
+        val question =
+            mQuestionsList[mCurrentPosition - 1] // Getting the question from the list with the help of current position.
+
+        defaultOptionsView()
+
+        if (mCurrentPosition == mQuestionsList.size) {
+            binding.btnSubmit.text = "FINISH"
+        } else {
+            binding.btnSubmit.text = "SUBMIT"
+        }
+
+        binding.progressBar.progress = mCurrentPosition
+        binding.tvProgress.text = "$mCurrentPosition" + "/" + binding.progressBar.getMax()
+
+        if (question != null) {
+            binding.tvQuestion.text = question.englishName
+            binding.tvOptionOne.text = question.russianOption1
+            binding.tvOptionTwo.text = question.russianOption2
+            binding.tvOptionThree.text = question.russianOption3
+        }
     }
 
-    fun displayQuestion() {
-        if (questions != null) {
-            // Randomly select a question from the list (excluding answered ones)
-            if (questions!!.questionBase != null) {
-                val currentQuestion = questions!!.questionBase?.randomOrNull()
+    private fun defaultOptionsView() {
 
-                if (currentQuestion != null) {
-                    binding.activityFindTranslationRandomWordTextView.text =
-                        currentQuestion.questions?.firstOrNull()?.english_name ?: "ERROR"
+        val options = ArrayList<TextView>()
+        options.add(0, binding.tvOptionOne)
+        options.add(1, binding.tvOptionTwo)
+        options.add(2, binding.tvOptionThree)
 
-                    val shuffledAnswers = currentQuestion.questions?.toMutableList()?.apply {
-                        shuffle(Random) // Shuffle answer order
+        for (option in options) {
+            option.setTextColor(Color.parseColor("#7A8089"))
+            option.typeface = Typeface.DEFAULT
+            option.background = ContextCompat.getDrawable(
+                this@FindTranlationTestActivity,
+                R.drawable.default_option_border_bg
+            )
+        }
+    }
+
+    override fun onClick(v: View?) {
+
+        when (v?.id) {
+
+            R.id.tv_option_one -> {
+
+                selectedOptionView(binding.tvOptionOne, 1)
+            }
+
+            R.id.tv_option_two -> {
+
+                selectedOptionView(binding.tvOptionTwo, 2)
+            }
+
+            R.id.tv_option_three -> {
+
+                selectedOptionView(binding.tvOptionThree, 3)
+            }
+
+            R.id.btn_submit -> {
+
+                if (mSelectedOptionPosition == 0) {
+
+                    mCurrentPosition++
+
+                    when {
+
+                        mCurrentPosition <= mQuestionsList!!.size -> {
+
+                            setQuestion()
+                        }
+
+                        else -> {
+
+                            val intent =
+                                Intent(this@FindTranlationTestActivity, activity_result::class.java)
+                            intent.putExtra("CORRECT_ANSWERS", mCorrectAnswers)
+                            intent.putExtra("TOTAL_QUESTIONS", mQuestionsList.size)
+                            startActivity(intent)
+                            finish()
+                            // END
+                        }
+                    }
+                } else {
+                    val question = mQuestionsList?.get(mCurrentPosition - 1)
+
+                    // This is to check if the answer is wrong
+                    if (question!!.answer != mSelectedOptionPosition) {
+                        answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                    } else {
+                        mCorrectAnswers++
                     }
 
-                    binding.activityFindTranslationVariantButton1.text =
-                        shuffledAnswers?.get(0)?.russian_name ?: "ERROR"
-                    binding.activityFindTranslationVariantButton2.text =
-                        shuffledAnswers?.get(1)?.russian_name ?: "ERROR"
-                    binding.activityFindTranslationVariantButton3.text =
-                        shuffledAnswers?.get(2)?.russian_name ?: "ERROR"
+                    // This is for correct answer
+                    answerView(question.answer, R.drawable.correct_option_border_bg)
 
-                    binding.activityFindTranslationTestQuestionCountTextView.text =
-                        (currentQuestionIndex + 1).toString() // Update question count
-                    currentQuestion.answered = true // Mark question as answered
+                    if (mCurrentPosition == mQuestionsList!!.size) {
+                        binding.btnSubmit.text = "FINISH"
+                    } else {
+                        binding.btnSubmit.text = "GO TO NEXT QUESTION"
+                    }
 
-                    resetButtonColors()
-                } else {
-                    // Handle no more questions scenario (e.g., show completion message)
-                    showResult()
+                    mSelectedOptionPosition = 0
                 }
             }
         }
     }
 
-    fun checkAnswer(selectedAnswer: Int) {
-        if (currentQuestion != null) {
-            // Always check against the first element (index 0) of the shuffled questions
-            val correctAnswer = currentQuestion!!.questions?.firstOrNull()
+    private fun answerView(answer: Int, drawableView: Int) {
 
-            if (selectedAnswer == 0 && correctAnswer != null) {
-                score++
-                correctButtonColors(selectedAnswer)
-            } else {
-                wrongButtonColors(selectedAnswer)
-                correctButtonColors(0) // Highlight the actual correct answer (index 0)
-            }
+        when (answer) {
 
-            if (currentQuestionIndex < questionsCount - 1) {
-                currentQuestionIndex++
-                binding.activityFindTranslationRandomWordTextView.postDelayed(
-                    { displayQuestion() },
-                    1000
+            1 -> {
+                binding.tvOptionOne.background = ContextCompat.getDrawable(
+                    this@FindTranlationTestActivity,
+                    drawableView
                 )
-            } else {
-                showResult()
+            }
+
+            2 -> {
+                binding.tvOptionTwo.background = ContextCompat.getDrawable(
+                    this@FindTranlationTestActivity,
+                    drawableView
+                )
+            }
+
+            3 -> {
+                binding.tvOptionThree.background = ContextCompat.getDrawable(
+                    this@FindTranlationTestActivity,
+                    drawableView
+                )
             }
         }
     }
 
-    fun restartQuiz() {
-        currentQuestionIndex = 0
-        score = 0
-        questions =
-            questionHelper?.getQuestionsBase(questionsCount, dbh) // Fetch all questions again
-        displayQuestion()
-        binding.restartButton.isEnabled = false
-    }
+    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
 
+        defaultOptionsView()
 
-    fun correctButtonColors(buttonIndex: Int) {
-        resetButtonColors() // Ensure all buttons are initially reset
-        when (buttonIndex) {
-            0 -> binding.activityFindTranslationVariantButton1.setBackgroundColor(Color.GREEN)
-            1 -> binding.activityFindTranslationVariantButton2.setBackgroundColor(Color.GREEN)
-            2 -> binding.activityFindTranslationVariantButton3.setBackgroundColor(Color.GREEN)
-        }
-    }
+        mSelectedOptionPosition = selectedOptionNum
 
-    fun wrongButtonColors(buttonIndex: Int) {
-        resetButtonColors() // Ensure all buttons are initially reset
-        when (buttonIndex) {
-            0 -> binding.activityFindTranslationVariantButton1.setBackgroundColor(Color.RED)
-            1 -> binding.activityFindTranslationVariantButton2.setBackgroundColor(Color.RED)
-            2 -> binding.activityFindTranslationVariantButton3.setBackgroundColor(Color.RED)
-        }
-    }
-
-    fun resetButtonColors() {
-        binding.activityFindTranslationVariantButton1.setBackgroundColor(Color.parseColor("#7287fd"))
-        binding.activityFindTranslationVariantButton2.setBackgroundColor(Color.parseColor("#7287fd"))
-        binding.activityFindTranslationVariantButton3.setBackgroundColor(Color.parseColor("#7287fd"))
+        tv.setTextColor(
+            Color.parseColor("#363A43")
+        )
+        tv.setTypeface(tv.typeface, Typeface.BOLD)
+        tv.background = ContextCompat.getDrawable(
+            this@FindTranlationTestActivity,
+            R.drawable.selected_option_border_bg
+        )
     }
 
 }
-

@@ -8,91 +8,107 @@
     android:background="@color/latte_base"
     tools:context=".app_pages.tests.FindTranslationTest.FindTranlationTestActivity">
 
-    <TextView
-        android:id="@+id/activity_find_translation_random_word_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="Random word"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/activity_find_translation_variant_button_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:backgroundTint="@color/button_background_color"
-        android:text="Russian translate 1"
-        android:textColor="@color/button_text_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/activity_find_translation_random_word_text_view"
-        app:layout_constraintStart_toStartOf="@+id/activity_find_translation_random_word_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/activity_find_translation_random_word_text_view" />
-
-    <Button
-        android:id="@+id/activity_find_translation_variant_button_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:backgroundTint="@color/button_background_color"
-        android:text="Russian translate 2"
-        android:textColor="@color/button_text_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/activity_find_translation_variant_button_1"
-        app:layout_constraintStart_toStartOf="@+id/activity_find_translation_variant_button_1"
-        app:layout_constraintTop_toBottomOf="@+id/activity_find_translation_variant_button_1" />
-
-    <Button
-        android:id="@+id/activity_find_translation_variant_button_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:backgroundTint="@color/button_background_color"
-        android:text="Russian translate 3"
-        android:textColor="@color/button_text_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/activity_find_translation_variant_button_2"
-        app:layout_constraintStart_toStartOf="@+id/activity_find_translation_variant_button_2"
-        app:layout_constraintTop_toBottomOf="@+id/activity_find_translation_variant_button_2" />
-
-    <Button
-        android:id="@+id/find_translation_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_background_color"
-        android:clickable="true"
-        android:focusable="true"
-        android:scaleType="fitCenter"
-        android:text="Back"
-        android:textColor="@color/latte_base"
-        android:textSize="20sp"
-        app:icon="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/activity_find_translation_test_question_count_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:text="1"
-        android:textColor="@color/dark_text"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_find_translation_random_word_text_view"
-        app:layout_constraintEnd_toStartOf="@+id/activity_find_translation_random_word_text_view"
-        app:layout_constraintTop_toTopOf="@+id/activity_find_translation_random_word_text_view" />
-
-    <Button
-        android:id="@+id/restartButton"
-        android:layout_width="345dp"
-        android:layout_height="81dp"
-        android:enabled="false"
-        android:text="Restart Quiz"
-        android:textSize="24sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textColor="#363A43"
+            android:textSize="22sp"
+            tools:text="What country does this flag belong to?" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_progress_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:indeterminate="false"
+                android:minHeight="50dp"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textColorHint="#7A8089"
+                android:textSize="14sp"
+                tools:text="0/0" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_option_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColor="#7A8089"
+            android:textSize="18sp"
+            tools:text="Apple" />
+
+        <TextView
+            android:id="@+id/tv_option_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColor="#7A8089"
+            android:textSize="18sp"
+            tools:text="Google" />
+
+        <TextView
+            android:id="@+id/tv_option_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColor="#7A8089"
+            android:textSize="18sp"
+            tools:text="Android Inc." />
+
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/dark_text"
+            android:text="SUBMIT"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

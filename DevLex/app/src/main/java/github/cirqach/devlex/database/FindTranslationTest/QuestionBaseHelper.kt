@@ -1,145 +1,137 @@
 package github.cirqach.devlex.database.FindTranslationTest
 
-import android.content.Context
 import android.util.Log
 import github.cirqach.devlex.database.DataList
 import github.cirqach.devlex.database.DevLexDBHelper
 import github.cirqach.devlex.database.DevLexDatabaseContract
+import java.util.Collections
 import kotlin.random.Random
 
-class QuestionBaseHelper() {
-
-    data class QuestionsBase(
-        val questionBase: MutableSet<Question?>?,
-    ) {
-    }
+class QuestionBaseHelper {
 
     data class Question(
-        val questions: MutableSet<DataList?>?,
-    ) {
-        var answered: Boolean = false
+        val englishName: String,
+        val russianOption1: String,
+        val russianOption2: String,
+        val russianOption3: String,
+        val answer: Int // The index (1-based) of the correct option
+    )
 
-    }
 
-    fun getQuestionsBase(numberOfQuestions: Int, dbh: DevLexDBHelper?): QuestionsBase? {
-        val TAG = "creating questions base"
-        val result = QuestionsBase(
-            mutableSetOf(
-                Question(
-                    mutableSetOf(
-                        DataList("1", "1", "1", "1")
-                    )
-                )
-            )
+    fun getQuestionsList(dbh: DevLexDBHelper?, questionsCount: Int): MutableList<Question?> {
+        if (dbh == null) {
+            Log.d("getQuestionsList", "dbh is null")
+            return mutableListOf(null) // Return an empty list with a single null element to indicate failure
+        }
+
+        val tableRowCount = DevLexDBHelper.getTableRowCount(
+            DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+            dbh
         )
-        Log.d(TAG, "getQuestionsBase: result created = $result")
-        Log.d(TAG, "getQuestionsBase: creating normal result")
-        if (result.questionBase != null) {
-            while (result.questionBase.size < numberOfQuestions) {
-                Log.d(
-                    TAG,
-                    "getQuestionsBase: result size less than $numberOfQuestions, count of iteration is ${result.questionBase.size}"
-                )
-                if (dbh != null) {
-                    val data = getRandomQuestion(dbh)
-                    Log.d(TAG, "getQuestionsBase: now data = $data")
-                    if (data != null) {
-                        result.questionBase.add(getRandomQuestion(dbh))
-                    } else {
-                        Log.d(TAG, "getQuestionsBase: data is null")
-                    }
-                } else {
-                    Log.d(TAG, "getQuestionsBase: dbh is null")
-                }
-                if (result.questionBase?.remove(
-                        Question(
-                            mutableSetOf(
-                                DataList("1", "1", "1", "1")
-                            )
-                        )
-                    ) == true
-                ) {
-                    Log.d(TAG, "getQuestionsBase: removing temporary data successful")
-                } else {
-                    Log.d(TAG, "getQuestionsBase: CANT REMOVE temporary data")
-                }
 
-                return result
+        if (tableRowCount == 0) {
+            Log.d("getQuestionsList", "No questions found in the database")
+            return mutableListOf(null) // Return an empty list with a single null element to indicate failure
+        }
+
+        val questionsList = mutableListOf<Question?>()
+        var retrievedCount = 0
+
+        while (retrievedCount < questionsCount) {
+            val question = getRandomQuestion(dbh)
+            if (question != null) {
+                questionsList.add(question)
+                retrievedCount++
             }
         }
-        Log.d(TAG, "getQuestionsBase: SOMETHING IS WRONG returning null")
-        return null
-    }
 
-    fun getRandomQuestion(
-        dbh: DevLexDBHelper?
-    ): Question? {
-        val TAG = "creating random question"
-        if (dbh != null) {
-            return Question(
-                mutableSetOf( // getting DataList by random question three times
-                    dbh.getDataByIdFromLexicon(
-                        DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                        Random.nextInt(
-                            1,
-                            DevLexDBHelper.getTableRowCount(
-                                DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                                dbh
-                            )
-                        )
-                    ),
-                    dbh.getDataByIdFromLexicon(
-                        DevLexDatabaseContract.LexiconEntry.TABLE_NAME, Random.nextInt(
-                            1,
-                            DevLexDBHelper.getTableRowCount(
-                                DevLexDatabaseContract.LexiconEntry.TABLE_NAME, dbh
-                            )
-                        )
-                    ),
-                    dbh.getDataByIdFromLexicon(
-                        DevLexDatabaseContract.LexiconEntry.TABLE_NAME, Random.nextInt(
-                            1,
-                            DevLexDBHelper.getTableRowCount(
-                                DevLexDatabaseContract.LexiconEntry.TABLE_NAME, dbh
-                            )
-                        )
-                    )
-                )
+        if (questionsList.size < questionsCount) {
+            Log.d(
+                "getQuestionsList",
+                "Retrieved only ${questionsList.size} questions out of requested $questionsCount"
             )
-        } else {
-            Log.d(TAG, "getRandomQuestion: dbh is null")
         }
-        return null
+
+        return questionsList
     }
 
+
+    fun getRandomQuestion(dbh: DevLexDBHelper?): Question? {
+        if (dbh == null) {
+            Log.d("getRandomQuestion", "dbh is null")
+            return null
+        }
+
+        val tableRowCount = DevLexDBHelper.getTableRowCount(
+            DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+            dbh
+        )
+
+        if (tableRowCount == 0) {
+            Log.d("getRandomQuestion", "No questions found in the database")
+            return null
+        }
+
+        // Try retrieving a random question up to 3 times (adjustable)
+        for (attempt in 1..3) {
+            try {
+                val randomIndex = Random.nextInt(0, tableRowCount)
+                val questionData = dbh.getDataByIdFromLexicon(
+                    DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+                    randomIndex + 1 // Adjust for 0-based indexing
+                )
+
+
+                if (questionData != null) { // Check if data is retrieved successfully
+                    val options = listOf(
+                        questionData,
+                        getRandomQuestionExceptId(dbh, questionData.id.toInt(), tableRowCount)
+                            ?: continue,
+                        getRandomQuestionExceptId(dbh, questionData.id.toInt(), tableRowCount)
+                            ?: continue
+                    )
+
+                    Collections.shuffle(options)
+
+                    val correctOptionIndex =
+                        options.indexOf(questionData) + 1 // +1 for 1-based indexing
+
+                    return Question(
+                        questionData.english_name,
+                        options[0].russian_name ?: "MISSING DATA",
+                        options[1].russian_name ?: "MISSING DATA",
+                        options[2].russian_name ?: "MISSING DATA",
+                        correctOptionIndex
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("getRandomQuestion", "Error getting random question: ${e.message}")
+            }
+        }
+
+        Log.d("getRandomQuestion", "Failed to retrieve a random question after 3 attempts")
+        return null // Return null after all attempts fail
+    }
+
+
+    private fun getRandomQuestionExceptId(
+        dbh: DevLexDBHelper,
+        id: Int,
+        tableRowCount: Int
+    ): DataList? {
+        while (true) {
+            val randomNumber = Random.nextInt(1, tableRowCount + 1) // Include upper bound
+            if (randomNumber != id && dbh.doesIdExist(
+                    DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+                    randomNumber
+                )
+            ) {
+                return dbh.getDataByIdFromLexicon(
+                    DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+                    randomNumber
+                )
+            }
+        }
+    }
 }
 
-/* if (dbh != null) {
-            val randomNumber: Int =
-                Random.nextInt(1, DevLexDBHelper.getTableRowCount(TABLE_NAME, dbh))
-            Log.d(
-                DevLexDBHelper.TAG,
-                "getRandomIdFromTable: randoming number from 1 to ${
-                    DevLexDBHelper.getTableRowCount(
-                        TABLE_NAME,
-                        dbh
-                    )
-                }, number is $randomNumber"
-            )
-            if (blackList.contains(randomNumber)) {
-                Log.d(DevLexDBHelper.TAG, "getRandomIdFromTable: $blackList contains $randomNumber")
-                getRandomIdFromTable(TABLE_NAME, blackList, dbh)
-            } else {
-                Log.d(DevLexDBHelper.TAG, "getRandomIdFromTable: $randomNumber not in black list")
-                Log.d(DevLexDBHelper.TAG, "getRandomIdFromTable: adding $randomNumber to blacklist")
-                blackList.add(randomNumber)
-                Log.d(DevLexDBHelper.TAG, "getRandomIdFromTable: trying to get items from database")
-                val result = dbh.getDataByIdFromLexicon(TABLE_NAME, randomNumber)
-                Log.d(DevLexDBHelper.TAG, "getRandomIdFromTable: returning $result")
-                return result
-            }
-        } else {
-            val TAG = "randomizing id from table"
-            Log.d(TAG, "getRandomIdFromTable: dbh is null")
-        }
-        return null*/

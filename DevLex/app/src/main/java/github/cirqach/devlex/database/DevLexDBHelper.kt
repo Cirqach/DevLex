@@ -229,34 +229,47 @@ class DevLexDBHelper(context: Context?) :
     fun getDataByIdFromLexicon(TABLE_NAME: String, ID: Int): DataList? {
         val db = readableDatabase
         val query =
-            "SELECT * FROM $TABLE_NAME WHERE ${DevLexDatabaseContract.LexiconEntry.ID} = ${ID.toInt()}"
+            "SELECT * FROM $TABLE_NAME WHERE ${DevLexDatabaseContract.LexiconEntry.ID} = $ID"
         val cursor = db.rawQuery(query, null)
         cursor.moveToFirst()
-        if (ID != 0 && ID > 0) {
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    val id =
-                        cursor.getInt(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.ID))
-                    val english_name =
-                        cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.ENGLISH_NAME))
-                    val russian_name =
-                        cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.RUSSIAN_NAME))
-                    val defenition =
-                        cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.WORD_DEFENITION))
-                    val result: DataList =
-                        DataList(english_name, russian_name, defenition, id.toString());
-                    cursor.close()
-                    return result
-                } else {
-                    Log.d(TAG, "getDataByIdFromLexicon: cursor is 0 rows")
-                    cursor.close()
-                }
+
+        if (ID != 0) { // Handle both null and non-existent IDs
+            if (cursor.moveToFirst()) {
+                val id =
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.ID))
+                val english_name =
+                    cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.ENGLISH_NAME))
+                val russian_name =
+                    cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.RUSSIAN_NAME))
+                val defenition =
+                    cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.WORD_DEFENITION))
+                val result: DataList =
+                    DataList(english_name, russian_name, defenition, id.toString());
+                cursor.close()
+                return result
+            } else {
+                Log.d(
+                    TAG,
+                    "getDataByIdFromLexicon: Entry with ID $ID not found"
+                ) // More specific message
+                cursor.close()
+                return null // Or an empty DataList if preferred
             }
         } else {
-            Log.d(TAG, "getDataByIdFromLexicon: ID is null $ID")
+            Log.d(TAG, "getDataByIdFromLexicon: ID is null")
         }
         cursor.close()
         return null;
+    }
+
+    fun doesIdExist(TABLE_NAME: String, ID: Int): Boolean {
+        val db = readableDatabase
+        val query =
+            "SELECT 1 FROM $TABLE_NAME WHERE ${DevLexDatabaseContract.LexiconEntry.ID} = $ID"
+        val cursor = db.rawQuery(query, null)
+        val exists = cursor.moveToFirst()
+        cursor.close()
+        return exists
     }
 
 
