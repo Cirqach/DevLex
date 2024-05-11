@@ -176,54 +176,15 @@ class DevLexDBHelper(context: Context?) :
     fun saveDataToTest(
         TABLE_NAME: String,
         RESULT: String,
-        RESULT_PROCENT: String,
-        TIME_START: String,
-        TIME_FINISH: String,
-        PROGRESS: String,
-        ID: String
-    ) {
-        Log.d(
-            TAG,
-            "saveDataToTest: saving data($RESULT, $RESULT_PROCENT, $TIME_START, $TIME_FINISH, $PROGRESS) to table $TABLE_NAME"
-        )
-        val db = writableDatabase
-        if (db == null || !db.isOpen) {
-            Log.d(TAG, "Database not open for update")
-            return  // Exit the function if database is unavailable
-        }
-
-        try {
-            // 2. Prepare content values:
-            val contentValues = ContentValues().apply {
-                put(DevLexDatabaseContract.Test.RESULT, RESULT)
-                put(DevLexDatabaseContract.Test.RESULT_PROCENT, RESULT_PROCENT)
-                put(DevLexDatabaseContract.Test.TIME_START, TIME_START)
-                put(DevLexDatabaseContract.Test.TIME_FINISH, TIME_FINISH)
-                put(DevLexDatabaseContract.Test.PROGRESS, PROGRESS)
-            }
-            Log.d(TAG, "saveDataToTest: content values = $contentValues")
-
-            // 3. Update the database:
-            val whereClause = "${DevLexDatabaseContract.LexiconEntry.ID} = ?"
-            val whereArgs = arrayOf(ID)
-            val rowsUpdated = db.update(
-                DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                contentValues,
-                whereClause,
-                whereArgs
-            )
-            Log.d(TAG, "saveDataToTest: whereClause = $whereClause\nwhereArgs = $whereArgs")
-            Log.d(TAG, "Rows updated: $rowsUpdated")
-            if (rowsUpdated == 0) {
-                Log.d(TAG, "No rows updated, data might be unchanged or entry not found")
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Error saving data: $e")
-            // Handle potential exceptions during database operations (optional)
-        } finally {
-            // 4. Always close the database connection:
-            db.close()
-        }
+        RESULT_PROCENT: Int
+    ): Boolean {
+        Log.d(TAG, "saveDataToTest: saving $TABLE_NAME + $RESULT + $RESULT_PROCENT")
+        val p0 = this.writableDatabase
+        val content_values = ContentValues()
+        content_values.put(DevLexDatabaseContract.Test.RESULT, RESULT)
+        content_values.put(DevLexDatabaseContract.Test.RESULT_PROCENT, RESULT_PROCENT)
+        val result = p0.insert(TABLE_NAME, null, content_values)
+        return result != (-1).toLong()
     }
 
     fun getDataByIdFromLexicon(TABLE_NAME: String, ID: Int): DataList? {

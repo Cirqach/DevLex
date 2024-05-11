@@ -16,9 +16,6 @@ class DevLexDatabaseContract {
         const val ID = BaseColumns._ID
         const val RESULT = "RESULT"
         const val RESULT_PROCENT = "RESULT_PROCENT"
-        const val TIME_START = "TIME_START"
-        const val TIME_FINISH = "TIME_FINISH"
-        const val PROGRESS = "PROGRESS"
     }
 
     object Tables : BaseColumns {

@@ -10,8 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import github.cirqach.devlex.R
-import github.cirqach.devlex.app_pages.tests.FindTranslationTest.FindTranlationTestActivity
-import github.cirqach.devlex.database.DevLexDBHelper
+import github.cirqach.devlex.app_pages.tests.FindTranslationTestActivity
+import github.cirqach.devlex.app_pages.tests.FindWordTestActivity
 
 
 class FindTranslationTestFragment : Fragment() {
@@ -27,7 +27,6 @@ class FindTranslationTestFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val dbh: DevLexDBHelper = DevLexDBHelper(view.context)
         val questionsCountEditText: EditText =
             requireView().findViewById(R.id.fragment_find_translation_editTextNumber)
         val start_button: Button = requireView().findViewById(R.id.fragment_find_translation_button)
@@ -43,7 +42,7 @@ class FindTranslationTestFragment : Fragment() {
             Log.d(TAG, "onViewCreated: question count = $questionsCount")
             val intent = Intent(
                 view.context,
-                FindTranlationTestActivity::class.java
+                FindWordTestActivity::class.java
             )
             Log.d(TAG, "onViewCreated: put extra $questionsCount")
             intent.putExtra("count_of_test", questionsCount)

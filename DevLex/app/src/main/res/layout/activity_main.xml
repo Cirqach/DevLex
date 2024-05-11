@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/latte_base"
-    tools:context=".MainActivity">
+    tools:context=".app_pages.MainActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="DevLex"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textSize="24pt"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Hey there!"
+        android:text="@string/hey_there"
         android:textColor="#4c4f69"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="Developer: Ivanov Sergey"
+        android:text="@string/developer_ivanov_sergey"
         android:textColor="#4c4f69"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="Source code on"
+        android:text="@string/source_code_on"
         android:textColor="#4c4f69"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
         android:width="200dp"
         android:backgroundTint="@color/button_background_color"
         android:fontFamily="@font/poppins_medium"
-        android:text="Start"
+        android:text="@string/start"
         android:textAlignment="center"
         android:textColor="@color/button_text_color"
         android:textSize="24sp"
@@ -80,11 +80,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:backgroundTint="#252537"
-        android:text="github"
+        android:text="@string/github"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         app:icon="@drawable/github_icon"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/language_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:showText="true"
+        android:textOff="@string/en"
+        android:textOn="@string/ru"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:height="48dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

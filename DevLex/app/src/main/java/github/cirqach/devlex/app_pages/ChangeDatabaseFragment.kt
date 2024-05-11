@@ -63,7 +63,7 @@ class ChangeDatabaseFragment : Fragment() {
 
         russian_edit_text = view.findViewById(R.id.crud_russian_name_edit_text_view)
         english_edit_text = view.findViewById(R.id.crud_english_name_edit_text_view)
-        definition_edit_text = view.findViewById(R.id.crud_defenition_edit_text_view)
+        definition_edit_text = view.findViewById(R.id.crud_definition_edit_text_view)
         id_text_view = view.findViewById(R.id.crud_id_text_view)
 
         if (view.context != null) {

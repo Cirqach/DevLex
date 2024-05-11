@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mocha_base"
-    tools:context=".app_pages.tests.FindTranslationTest.activity_result">
+    tools:context=".app_pages.activity_result">
 
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_marginStart="174dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="145dp"
-        android:text="Result"
+        android:text="@string/result"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -32,7 +32,7 @@
         android:layout_marginStart="93dp"
         android:layout_marginTop="63dp"
         android:layout_marginEnd="57dp"
-        android:text="Hey, Congratulations!"
+        android:text="@string/hey_congratulations"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -62,9 +62,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:color/white"
-        android:text="FINISH"
-        android:textColor="@color/light_text"
+        android:background="@color/button_background_color"
+        android:text="@string/finish"
+        android:textColor="@color/button_text_color"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

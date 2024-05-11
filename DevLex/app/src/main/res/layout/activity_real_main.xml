@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/latte_base"
     android:fitsSystemWindows="true"
-    tools:context=".RealMainActivity"
+    tools:context=".app_pages.RealMainActivity"
     tools:openDrawer="start">
 
     <LinearLayout

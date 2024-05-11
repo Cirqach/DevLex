@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="Random english word"
+        android:text="@string/random_english_word"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,20 +23,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="Random russian word"
+        android:text="@string/random_russian_word"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/find_word_activity_random_definition_text_view"
         app:layout_constraintStart_toStartOf="@+id/find_word_activity_random_definition_text_view"
         app:layout_constraintTop_toBottomOf="@+id/find_word_activity_random_definition_text_view" />
 
     <Button
-        android:id="@+id/true_false_test_activity_true_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="70dp"
         android:backgroundTint="@color/button_background_color"
-        android:text="True"
+        android:text="@string/true_answer"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textView12"
@@ -44,13 +43,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
-        android:id="@+id/true_false_test_activity_false_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="40dp"
         android:backgroundTint="@color/button_background_color"
-        android:text="False"
+        android:text="@string/false_answer"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,14 +56,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
-        android:id="@+id/find_word_activity_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_background_color"
         android:clickable="true"
         android:focusable="true"
         android:scaleType="fitCenter"
-        android:text="Back"
+        android:text="@string/back"
         android:textColor="@color/latte_base"
         android:textSize="20sp"
         app:icon="@drawable/back"

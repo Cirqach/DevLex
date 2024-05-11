@@ -8,11 +8,11 @@
         <item
             android:id="@+id/nav_words"
             android:icon="@drawable/lexicon"
-            android:title="Lexicon" />
+            android:title="@string/lexicon" />
         <item
             android:id="@+id/nav_statistic"
             android:icon="@drawable/statistic"
-            android:title="Statistic" />
+            android:title="@string/statistic" />
 
 
     </group>
@@ -21,15 +21,15 @@
         <item
             android:id="@+id/nav_true_false_test"
             android:icon="@drawable/true_false"
-            android:title="True/False test" />
+            android:title="@string/true_false_test" />
         <item
             android:id="@+id/nav_find_word_test"
             android:icon="@drawable/find_word"
-            android:title="Find word test" />
+            android:title="@string/find_word_test" />
         <item
             android:id="@+id/nav_find_translation_test"
             android:icon="@drawable/find_translation"
-            android:title="Find translation test"
+            android:title="@string/find_translation_test"
 
             />
     </group>
@@ -41,7 +41,7 @@
         <item
             android:id="@+id/nav_edit_database"
             android:icon="@drawable/editing"
-            android:title="Change database" />
+            android:title="@string/change_database" />
 
     </group>
 

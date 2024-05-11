@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.cirqach.devlex.R
+import github.cirqach.devlex.app_pages.add_word_activity
 import github.cirqach.devlex.database.DataList
 import github.cirqach.devlex.database.DevLexAdapter
 import github.cirqach.devlex.database.DevLexDBHelper
@@ -63,10 +64,12 @@ class ChangeDatabaseFragment : Fragment() {
 
         russian_edit_text = view.findViewById(R.id.crud_russian_name_edit_text_view)
         english_edit_text = view.findViewById(R.id.crud_english_name_edit_text_view)
-        definition_edit_text = view.findViewById(R.id.crud_defenition_edit_text_view)
+        definition_edit_text = view.findViewById(R.id.crud_definition_edit_text_view)
         id_text_view = view.findViewById(R.id.crud_id_text_view)
 
-        dbh = DevLexDBHelper(view.context)
+        if (view.context != null) {
+            dbh = DevLexDBHelper(view.context)
+        }
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.setHasFixedSize(true)
         displayWord()
@@ -97,10 +100,7 @@ class ChangeDatabaseFragment : Fragment() {
             displayWord()
         }
         add_button.setOnClickListener {
-            val intent = Intent(
-                requireContext(),
-                github.cirqach.devlex.app_pages.add_word_activity::class.java
-            )
+            val intent = Intent(requireContext(), add_word_activity::class.java)
             startActivity(intent)
         }
         save_button.setOnClickListener {

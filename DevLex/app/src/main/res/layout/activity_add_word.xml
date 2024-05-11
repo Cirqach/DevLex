@@ -13,8 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
+        android:autofillHints="English name"
         android:ems="10"
-        android:hint="English version of word"
+        android:hint="@string/english_version_of_word"
         android:inputType="text"
         android:textAlignment="viewStart"
         android:textColor="@color/dark_text"
@@ -27,8 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints="Russian name"
         android:ems="10"
-        android:hint="Russian version of word"
+        android:hint="@string/russian_version_of_word"
         android:inputType="text"
         android:textColor="@color/dark_text"
         app:layout_constraintEnd_toEndOf="@+id/english_name_edit_text"
@@ -36,12 +38,13 @@
         app:layout_constraintTop_toBottomOf="@+id/english_name_edit_text" />
 
     <EditText
-        android:id="@+id/defenition_edit_text"
+        android:id="@+id/definition_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Definition"
+        android:hint="@string/Definition"
         android:inputType="text"
         android:textColor="@color/dark_text"
         app:layout_constraintEnd_toEndOf="@+id/russian_name_edit_text"
@@ -56,15 +59,15 @@
         android:backgroundTint="@color/button_background_color"
         android:fontFamily="@font/poppins_medium"
         android:foreground="@null"
-        android:text="Add"
+        android:text="@string/add"
         android:textAlignment="center"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         android:visibility="visible"
         app:icon="@drawable/free_icon_add_square_outlined_interface_button_54731"
-        app:layout_constraintEnd_toEndOf="@+id/defenition_edit_text"
-        app:layout_constraintStart_toStartOf="@+id/defenition_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/defenition_edit_text" />
+        app:layout_constraintEnd_toEndOf="@+id/definition_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/definition_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/definition_edit_text" />
 
 
     <Button
@@ -75,7 +78,7 @@
         android:clickable="true"
         android:focusable="true"
         android:scaleType="fitCenter"
-        android:text="Back"
+        android:text="@string/back"
 
         android:textColor="@color/latte_base"
         app:icon="@drawable/back"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_value_to_database">Добавить</string>
+    <string name="english_name">Английский перевод</string>
+    <string name="russian_name">Русский перевод</string>
+    <string name="Definition">Определение</string>
+    <string name="procent_score">Результат</string>
+    <string name="score">Счет</string>
+    <string name="english_version_of_word">Английская версия слова</string>
+    <string name="russian_version_of_word">Русская версия слова</string>
+    <string name="add">Добавить</string>
+    <string name="back">Назад</string>
+    <string name="submit">Отправить</string>
+    <string name="hey_there">Здравствуйте!</string>
+    <string name="developer_ivanov_sergey">Разработчик: Иванов Сергей</string>
+    <string name="source_code_on">Исходный код на</string>
+    <string name="start">Начать</string>
+    <string name="result">Результат</string>
+    <string name="hey_congratulations">Поздравляем!</string>
+    <string name="finish">Закончить</string>
+    <string name="random_english_word">Случайное английское слово</string>
+    <string name="random_russian_word">Случайное русское слово</string>
+    <string name="true_answer">Правда</string>
+    <string name="false_answer">Ложь</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="find_translation_test">Тест \"Найди перевод\"</string>
+    <string name="count_of_rounds">Колличество раундов</string>
+    <string name="find_word_test">Тест \"Найти слово\"</string>
+    <string name="history">История</string>
+    <string name="statistic">Статистика</string>
+    <string name="average_procent_score">"Средний результат: "</string>
+    <string name="average_score">"Средний счет: "</string>
+    <string name="true_false_test">Тест \"True/False\"</string>
+    <string name="lexicon">Словарь</string>
+    <string name="change_database">Изменить базу данных</string>
+    <string name="your_score_is_out_of">Ваш счет %1$s из %2$s.</string>
+    <string name="go_to_next_question">К следующему вопросу</string>
+    <string name="refresh_database">Обновить базу данных</string>
+    <string name="language">Язык</string>
+    <string name="en">En</string>
+    <string name="ru">Ru</string>
+</resources>

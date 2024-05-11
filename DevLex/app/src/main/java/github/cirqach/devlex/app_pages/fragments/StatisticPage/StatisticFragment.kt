@@ -1,0 +1,71 @@
+package github.cirqach.devlex.app_pages.fragments.StatisticPage
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import github.cirqach.devlex.R
+import github.cirqach.devlex.database.DevLexDBHelper
+
+class StatisticFragment : Fragment() {
+
+    private lateinit var dbh: DevLexDBHelper
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager2: ViewPager2
+    private lateinit var tabLayoutAdapter: TabLayoutAdapter
+
+    val TAG = "StatisticFragment"
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_statistic, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+        tabLayout = view.findViewById(R.id.StatisticTestTabLayout)
+        viewPager2 = view.findViewById(R.id.viewPagerForTests)
+
+        tabLayoutAdapter = TabLayoutAdapter(parentFragmentManager, lifecycle)
+
+        tabLayout.addTab(tabLayout.newTab().setText("Find translation"))
+        tabLayout.addTab(tabLayout.newTab().setText("Find word"))
+        tabLayout.addTab(tabLayout.newTab().setText("True/False"))
+
+
+        viewPager2.adapter = tabLayoutAdapter
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab != null) {
+                    viewPager2.currentItem = tab.position
+                }
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+            }
+
+        })
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabLayout.selectTab(tabLayout.getTabAt(position))
+            }
+        })
+    }
+
+
+}

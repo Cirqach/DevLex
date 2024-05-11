@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
     <application
@@ -17,7 +18,7 @@
         android:theme="@style/Theme.DevLex"
         tools:targetApi="tiramisu">
         <activity
-            android:name=".app_pages.tests.FindTranslationTest.activity_result"
+            android:name=".app_pages.activity_result"
             android:exported="false" />
         <activity
             android:name=".app_pages.tests.TrueFalseTestActivity"
@@ -26,17 +27,17 @@
             android:name=".app_pages.tests.FindWordTestActivity"
             android:exported="false" />
         <activity
-            android:name=".app_pages.tests.FindTranslationTest.FindTranlationTestActivity"
+            android:name=".app_pages.tests.FindTranslationTestActivity"
             android:exported="false" />
         <activity
             android:name=".app_pages.add_word_activity"
             android:exported="false" />
         <activity
-            android:name=".RealMainActivity"
+            android:name=".app_pages.RealMainActivity"
             android:exported="false"
             android:theme="@style/Theme.DevLex" />
         <activity
-            android:name=".MainActivity"
+            android:name=".app_pages.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

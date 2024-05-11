@@ -36,7 +36,7 @@ class add_word_activity : AppCompatActivity() {
 
         english_name = findViewById(R.id.english_name_edit_text)
         russian_name = findViewById(R.id.russian_name_edit_text)
-        definition = findViewById(R.id.defenition_edit_text)
+        definition = findViewById(R.id.definition_edit_text)
         add_button = findViewById(R.id.add_button)
 
         val db: DevLexDBHelper = DevLexDBHelper(this)
@@ -53,7 +53,6 @@ class add_word_activity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "This words already exist", Toast.LENGTH_SHORT).show()
             }
-            onBackPressed()
 
         }
 

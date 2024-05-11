@@ -98,9 +98,9 @@ class QuestionBaseHelper {
 
                     return Question(
                         questionData.english_name,
-                        options[0].russian_name ?: "MISSING DATA",
-                        options[1].russian_name ?: "MISSING DATA",
-                        options[2].russian_name ?: "MISSING DATA",
+                        options[0].russian_name,
+                        options[1].russian_name,
+                        options[2].russian_name,
                         correctOptionIndex
                     )
                 }

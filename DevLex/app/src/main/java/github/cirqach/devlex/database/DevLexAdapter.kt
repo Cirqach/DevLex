@@ -15,7 +15,7 @@ class DevLexAdapter(private var wordList: ArrayList<DataList>) :
     class DevLexViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tenglish_name: TextView = itemView.findViewById(R.id.english_name_textview)
         val trussian_name: TextView = itemView.findViewById(R.id.russian_name_text_view)
-        val tdefinition: TextView = itemView.findViewById(R.id.word_defenition_textview)
+        val tdefinition: TextView = itemView.findViewById(R.id.word_definition_textview)
         val tid: TextView = itemView.findViewById(R.id.id_text_view)
     }
 
@@ -44,7 +44,11 @@ class DevLexAdapter(private var wordList: ArrayList<DataList>) :
 
     fun setFilteredList(wordList: ArrayList<DataList>) {
         this.wordList = wordList
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, wordList.size) // Notify that all items have changed
     }
+    fun updateItems(startIndex: Int, count: Int) {
+        notifyItemRangeChanged(startIndex, count)
+    }
+
 
 }

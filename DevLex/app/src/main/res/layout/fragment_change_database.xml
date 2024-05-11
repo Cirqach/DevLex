@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/latte_base"
-    tools:context=".app_pages.ChangeDatabaseFragment">
+    tools:context=".app_pages.fragments.ChangeDatabaseFragment">
 
     <Button
         android:id="@+id/crud_save_button"
@@ -15,7 +15,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="-60dp"
         android:backgroundTint="@color/button_background_color"
-        android:text="Save"
+        android:text="@string/save"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         app:icon="@drawable/free_icon_save_2550221"
@@ -28,13 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/button_background_color"
-        android:text="Delete"
+        android:text="@string/delete"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         app:icon="@drawable/free_icon_delete_1214428"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crud_defenition_edit_text_view" />
+        app:layout_constraintTop_toBottomOf="@+id/crud_definition_edit_text_view" />
 
     <Button
         android:id="@+id/crud_add_button"
@@ -43,7 +43,7 @@
         android:layout_marginStart="-60dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/button_background_color"
-        android:text="Add"
+        android:text="@string/add"
         android:textColor="@color/button_text_color"
         android:textSize="20sp"
         app:icon="@drawable/free_icon_add_square_outlined_interface_button_54731"
@@ -60,6 +60,8 @@
 
     <EditText
         android:id="@+id/crud_english_name_edit_text_view"
+        android:autofillHints="English name"
+        android:hint="@string/english_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -75,6 +77,8 @@
         android:id="@+id/crud_russian_name_edit_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints="Russian name"
+        android:hint="@string/russian_name"
         android:ems="10"
         android:inputType="text"
         android:textColor="@color/dark_text"
@@ -84,10 +88,12 @@
         app:layout_constraintTop_toBottomOf="@+id/crud_english_name_edit_text_view" />
 
     <EditText
-        android:id="@+id/crud_defenition_edit_text_view"
+        android:id="@+id/crud_definition_edit_text_view"
+        android:hint="@string/Definition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:autofillHints="Definition"
         android:ems="10"
         android:inputType="text"
         android:textColor="@color/dark_text"
@@ -104,7 +110,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/mocha_base"
@@ -118,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="1"
+        android:text="@string/id"
         android:textColor="@color/latte_base"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/crud_english_name_edit_text_view"
@@ -135,6 +140,8 @@
         android:layout_marginEnd="10dp"
         android:backgroundTint="@color/latte_base"
         android:clickable="true"
+        android:contentDescription="@string/refresh_database"
+        android:focusable="true"
         app:backgroundTint="@color/button_background_color"
         app:borderWidth="5dp"
         app:layout_constraintEnd_toEndOf="@+id/crud_search_view"
