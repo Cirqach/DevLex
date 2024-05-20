@@ -12,7 +12,7 @@ import github.cirqach.devlex.database.TestDataList
 class TestResultAdapter(private var resultList: MutableList<TestDataList>) :
     RecyclerView.Adapter<TestResultAdapter.TestResultsViewHolder>() {
 
-    var onItemClick: ((TestDataList) -> Unit)? = null
+    private var onItemClick: ((TestDataList) -> Unit)? = null
 
     class TestResultsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val score: TextView = itemView.findViewById(R.id.score)
@@ -42,6 +42,7 @@ class TestResultAdapter(private var resultList: MutableList<TestDataList>) :
 
     fun setFilteredList(resultList: ArrayList<TestDataList>) {
         this.resultList = resultList
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, resultList.size)
     }
+
 }

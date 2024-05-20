@@ -3,5 +3,8 @@
     <style name="Base.Theme.DevLex" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:textColor">@color/mocha_text</item>
+        <item name="background">@color/mocha_base</item>
+        <item name="itemTextColor">@color/mocha_text</item>
     </style>
 </resources>

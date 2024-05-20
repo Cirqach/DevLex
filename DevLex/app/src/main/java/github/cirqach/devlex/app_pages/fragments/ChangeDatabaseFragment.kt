@@ -1,5 +1,8 @@
 package github.cirqach.devlex.app_pages.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.os.Build
@@ -14,12 +17,13 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.cirqach.devlex.R
-import github.cirqach.devlex.app_pages.add_word_activity
+import github.cirqach.devlex.app_pages.AddWordActivity
 import github.cirqach.devlex.database.DataList
 import github.cirqach.devlex.database.DevLexAdapter
 import github.cirqach.devlex.database.DevLexDBHelper
@@ -29,18 +33,18 @@ import java.util.Locale
 
 class ChangeDatabaseFragment : Fragment() {
 
-    private lateinit var dbh: DevLexDBHelper
-    private lateinit var newArry: ArrayList<DataList>
+    lateinit var dbh: DevLexDBHelper
+    private lateinit var newArray: ArrayList<DataList>
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private lateinit var adapter: DevLexAdapter
-    private lateinit var russian_edit_text: EditText
-    private lateinit var english_edit_text: EditText
-    private lateinit var definition_edit_text: EditText
-    private lateinit var delete_button: Button
-    private lateinit var save_button: Button
-    private lateinit var add_button: Button
-    private lateinit var id_text_view: TextView
+    private lateinit var russianEditText: EditText
+    private lateinit var englishEditText: EditText
+    private lateinit var definitionEditText: EditText
+    private lateinit var deleteButton: Button
+    private lateinit var saveButton: Button
+    private lateinit var addButton: Button
+    private lateinit var idTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,22 +58,24 @@ class ChangeDatabaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val refresh_database_button: FloatingActionButton =
+        if (view.context != null) {
+            dbh = DevLexDBHelper(view.context)
+        }
+
+        val refreshDatabaseButton: FloatingActionButton =
             view.findViewById(R.id.crud_refresh_database_button)
-        refresh_database_button.setOnClickListener {
+        refreshDatabaseButton.setOnClickListener {
             displayWord()
         }
 
         recyclerView = view.findViewById(R.id.crud_recycler_view)
 
-        russian_edit_text = view.findViewById(R.id.crud_russian_name_edit_text_view)
-        english_edit_text = view.findViewById(R.id.crud_english_name_edit_text_view)
-        definition_edit_text = view.findViewById(R.id.crud_definition_edit_text_view)
-        id_text_view = view.findViewById(R.id.crud_id_text_view)
+        russianEditText = view.findViewById(R.id.crud_russian_name_edit_text_view)
+        englishEditText = view.findViewById(R.id.crud_english_name_edit_text_view)
+        definitionEditText = view.findViewById(R.id.crud_definition_edit_text_view)
+        idTextView = view.findViewById(R.id.crud_id_text_view)
 
-        if (view.context != null) {
-            dbh = DevLexDBHelper(view.context)
-        }
+
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.setHasFixedSize(true)
         displayWord()
@@ -89,47 +95,51 @@ class ChangeDatabaseFragment : Fragment() {
 
         })
 
-        delete_button = view.findViewById(R.id.crud_delete_button)
-        save_button = view.findViewById(R.id.crud_save_button)
-        add_button = view.findViewById(R.id.crud_add_button)
-        delete_button.setOnClickListener {
-            dbh.deleteData(
-                DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
-                id_text_view.text.toString()
-            )
-            displayWord()
+        deleteButton = view.findViewById(R.id.crud_delete_button)
+        saveButton = view.findViewById(R.id.crud_save_button)
+        addButton = view.findViewById(R.id.crud_add_button)
+        deleteButton.setOnClickListener {
+            deleteValues()
         }
-        add_button.setOnClickListener {
-            val intent = Intent(requireContext(), add_word_activity::class.java)
+        addButton.setOnClickListener {
+            val intent = Intent(requireContext(), AddWordActivity::class.java)
             startActivity(intent)
         }
-        save_button.setOnClickListener {
+        saveButton.setOnClickListener {
             Toast.makeText(view.context, "Saving data", Toast.LENGTH_SHORT).show()
             Log.d(
                 "save_button_click", "Data to save: " +
-                        "english = ${english_edit_text.text.toString()} , " +
-                        "russian = ${russian_edit_text.text.toString()}, " +
-                        "defeniton = ${definition_edit_text.text.toString()} ," +
-                        "ID = ${id_text_view.text.toString()}"
+                        "english = ${englishEditText.text} , " +
+                        "russian = ${russianEditText.text}, " +
+                        "definition = ${definitionEditText.text} ," +
+                        "ID = ${idTextView.text}"
             )
             dbh.saveDataToLexicon(
-                english_edit_text.text.toString(),
-                russian_edit_text.text.toString(),
-                definition_edit_text.text.toString(),
-                id_text_view.text.toString()
+                englishEditText.text.toString(),
+                russianEditText.text.toString(),
+                definitionEditText.text.toString(),
+                idTextView.text.toString()
             )
 
             displayWord()
         }
     }
 
+    fun deleteValues() {
+        dbh.deleteData(
+            DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
+            idTextView.text.toString()
+        )
+        displayWord()
+    }
+
 
     private fun filterList(query: String?) {
         if (query != null) {
             val filteredList = ArrayList<DataList>()
-            for (i in newArry) {
-                if (i.english_name.lowercase(Locale.ROOT).contains(query) ||
-                    i.russian_name.lowercase(Locale.ROOT).contains(query) ||
+            for (i in newArray) {
+                if (i.englishName.lowercase(Locale.ROOT).contains(query) ||
+                    i.russianName.lowercase(Locale.ROOT).contains(query) ||
                     i.definition.lowercase(Locale.ROOT).contains(query)
                 ) {
                     filteredList.add(i)
@@ -145,17 +155,17 @@ class ChangeDatabaseFragment : Fragment() {
     }
 
     private fun displayWord() {
-        var newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.LexiconEntry.TABLE_NAME)
-        newArry = ArrayList<DataList>()
-        while (newcursor!!.moveToNext()) {
-            val uenglish_name = newcursor.getString(1)
-            val urussian_name = newcursor.getString(2)
-            val udefinition = newcursor.getString(3)
-            val uid = newcursor.getString(0)
-            newArry.add(DataList(uenglish_name, urussian_name, udefinition, uid))
+        val newCursor: Cursor? = dbh.readAll(DevLexDatabaseContract.LexiconEntry.TABLE_NAME)
+        newArray = ArrayList()
+        while (newCursor!!.moveToNext()) {
+            val uEnglishName = newCursor.getString(1)
+            val uRussianName = newCursor.getString(2)
+            val uDefinition = newCursor.getString(3)
+            val uid = newCursor.getString(0)
+            newArray.add(DataList(uEnglishName, uRussianName, uDefinition, uid))
         }
-        recyclerView.adapter = DevLexAdapter(newArry)
-        adapter = DevLexAdapter(newArry)
+        recyclerView.adapter = DevLexAdapter(newArray)
+        adapter = DevLexAdapter(newArray)
         recyclerView.adapter = adapter
 
 
@@ -164,11 +174,14 @@ class ChangeDatabaseFragment : Fragment() {
             // Get the DataList object at the clicked position
 
             // Set the values of the EditText fields
-            russian_edit_text.setText(position.russian_name.toString())
-            english_edit_text.setText(position.english_name.toString())
-            definition_edit_text.setText(position.definition.toString())
-            id_text_view.text = position.id.toString()
+            russianEditText.setText(position.russianName)
+            englishEditText.setText(position.englishName)
+            definitionEditText.setText(position.definition)
+            idTextView.text = position.id
         }
     }
 
+
+
 }
+

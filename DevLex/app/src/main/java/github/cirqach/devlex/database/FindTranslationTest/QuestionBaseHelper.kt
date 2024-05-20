@@ -4,7 +4,6 @@ import android.util.Log
 import github.cirqach.devlex.database.DataList
 import github.cirqach.devlex.database.DevLexDBHelper
 import github.cirqach.devlex.database.DevLexDatabaseContract
-import java.util.Collections
 import kotlin.random.Random
 
 class QuestionBaseHelper {
@@ -56,7 +55,7 @@ class QuestionBaseHelper {
     }
 
 
-    fun getRandomQuestion(dbh: DevLexDBHelper?): Question? {
+    private fun getRandomQuestion(dbh: DevLexDBHelper?): Question? {
         if (dbh == null) {
             Log.d("getRandomQuestion", "dbh is null")
             return null
@@ -83,7 +82,7 @@ class QuestionBaseHelper {
 
 
                 if (questionData != null) { // Check if data is retrieved successfully
-                    val options = listOf(
+                    val options = mutableListOf(
                         questionData,
                         getRandomQuestionExceptId(dbh, questionData.id.toInt(), tableRowCount)
                             ?: continue,
@@ -91,16 +90,16 @@ class QuestionBaseHelper {
                             ?: continue
                     )
 
-                    Collections.shuffle(options)
+                    options.shuffle()
 
                     val correctOptionIndex =
                         options.indexOf(questionData) + 1 // +1 for 1-based indexing
 
                     return Question(
-                        questionData.english_name,
-                        options[0].russian_name,
-                        options[1].russian_name,
-                        options[2].russian_name,
+                        questionData.englishName,
+                        options[0].russianName,
+                        options[1].russianName,
+                        options[2].russianName,
                         correctOptionIndex
                     )
                 }

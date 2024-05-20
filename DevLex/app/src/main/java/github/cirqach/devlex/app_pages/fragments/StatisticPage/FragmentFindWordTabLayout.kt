@@ -17,66 +17,30 @@ import github.cirqach.devlex.database.DevLexDatabaseContract
 import github.cirqach.devlex.database.TestDataList
 import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 private lateinit var dbh: DevLexDBHelper
 private lateinit var newArry: ArrayList<TestDataList>
 private lateinit var recyclerView: RecyclerView
 private lateinit var adapter: TestResultAdapter
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentFindWordTabLayout.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FragmentFindWordTabLayout : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    val TAG = "find word tab layout"
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class FragmentFindWordTabLayout : Fragment() {
+
+
+    private val tag = "find word tab layout"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Log.d(tag, "onCreateView: on create view")
         return inflater.inflate(R.layout.fragment_find_word_tab_layout, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentFindWordTabLayout.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentFindWordTabLayout().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.d(tag, "onViewCreated: view created")
         recyclerView = view.findViewById(R.id.fwRecyclerView)
         dbh = DevLexDBHelper(view.context)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -102,10 +66,11 @@ class FragmentFindWordTabLayout : Fragment() {
     }
 
     private fun filterList(query: String?) {
+        Log.d(tag, "filterList: filtering list")
         if (query != null) {
             val filteredList = ArrayList<TestDataList>()
             for (i in newArry) {
-                if (i.score.lowercase(Locale.ROOT).contains(query) ||
+                if (i.score.toString().lowercase(Locale.ROOT).contains(query) ||
                     i.resultPercent.toString().lowercase(Locale.ROOT).contains(query)
                 ) {
                     filteredList.add(i)
@@ -121,14 +86,19 @@ class FragmentFindWordTabLayout : Fragment() {
     }
 
     private fun displayWord() {
-        val newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.Tables.FIND_WORD_TABLE)
-        newArry = ArrayList<TestDataList>()
-        while (newcursor!!.moveToNext()) {
-            val result = newcursor.getString(1)
-            val result_procent = newcursor.getInt(2)
-            newArry.add(TestDataList(result, result_procent))
+        Log.d(tag, "displayWord: displaying items")
+        val newCursor: Cursor? = dbh.readAll(DevLexDatabaseContract.Tables.FIND_WORD_TABLE)
+        newArry = ArrayList()
+        while (newCursor!!.moveToNext()) {
+            val result = newCursor.getInt(1)
+            val resultProcent = newCursor.getInt(2)
+            val questionCount = newCursor.getInt(3)
+            newArry.add(TestDataList("$result/$questionCount", resultProcent))
         }
-        Log.d(TAG, "displayWord: reading data from ${DevLexDatabaseContract.Tables.FIND_WORD_TABLE} is $newArry")
+        Log.d(
+            tag,
+            "displayWord: reading data from ${DevLexDatabaseContract.Tables.FIND_WORD_TABLE} is $newArry"
+        )
         recyclerView.adapter = TestResultAdapter(newArry)
     }
 }

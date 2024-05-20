@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import github.cirqach.devlex.R
 import github.cirqach.devlex.app_pages.tests.FindTranslationTestActivity
-import github.cirqach.devlex.app_pages.tests.FindWordTestActivity
 
 
 class FindTranslationTestFragment : Fragment() {
@@ -29,25 +29,29 @@ class FindTranslationTestFragment : Fragment() {
 
         val questionsCountEditText: EditText =
             requireView().findViewById(R.id.fragment_find_translation_editTextNumber)
-        val start_button: Button = requireView().findViewById(R.id.fragment_find_translation_button)
+        val startButton: Button = requireView().findViewById(R.id.fragment_find_translation_button)
 
 
-        val TAG = "FindTranslationTestFragment"
-        Log.d(TAG, "onViewCreated: on view created")
+        val tag = "FindTranslationTestFragment"
+        Log.d(tag, "onViewCreated: on view created")
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG, "onViewCreated: try to hand button click")
-        start_button.setOnClickListener {
-            Log.d(TAG, "onViewCreated: handle button click")
-            val questionsCount = questionsCountEditText.text.toString().toIntOrNull()
-            Log.d(TAG, "onViewCreated: question count = $questionsCount")
-            val intent = Intent(
-                view.context,
-                FindWordTestActivity::class.java
-            )
-            Log.d(TAG, "onViewCreated: put extra $questionsCount")
-            intent.putExtra("count_of_test", questionsCount)
-            startActivity(intent)
+        Log.d(tag, "onViewCreated: try to hand button click")
 
+        startButton.setOnClickListener {
+            Log.d(tag, "onViewCreated: handle button click")
+            if (questionsCountEditText.text.toString().toInt() <= 0){
+                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT).show()
+            }else {
+                val questionsCount = questionsCountEditText.text.toString().toIntOrNull()
+                Log.d(tag, "onViewCreated: question count = $questionsCount")
+                val intent = Intent(
+                    view.context,
+                    FindTranslationTestActivity::class.java
+                )
+                Log.d(tag, "onViewCreated: put extra $questionsCount")
+                intent.putExtra("count_of_test", questionsCount)
+                startActivity(intent)
+            }
         }
     }
 

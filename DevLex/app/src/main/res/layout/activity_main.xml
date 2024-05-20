@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/latte_base"
     tools:context=".app_pages.MainActivity">
 
     <TextView
@@ -16,6 +15,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="@string/app_name"
         android:textAlignment="center"
+        android:textColor="@color/devlex_color"
         android:textSize="24pt"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/source_code_on"
         android:textColor="#4c4f69"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -79,26 +79,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:backgroundTint="#252537"
+        android:backgroundTint="@color/mocha_base"
         android:text="@string/github"
-        android:textColor="@color/button_text_color"
+        android:textColor="@color/mocha_text"
         android:textSize="20sp"
         app:icon="@drawable/github_icon"
+        app:iconTint="@color/mocha_text"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/language_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:showText="true"
-        android:textOff="@string/en"
-        android:textOn="@string/ru"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:height="48dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

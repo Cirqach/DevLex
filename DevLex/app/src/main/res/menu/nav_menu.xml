@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    >
 
     <group android:checkableBehavior="single">
 
@@ -11,13 +12,10 @@
             android:title="@string/lexicon" />
         <item
             android:id="@+id/nav_statistic"
-            android:icon="@drawable/statistic"
-            android:title="@string/statistic" />
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/history" />
 
-
-    </group>
-    <group>
-        <item android:title="" />
+        <item android:enabled="false" android:title="" />
         <item
             android:id="@+id/nav_true_false_test"
             android:icon="@drawable/true_false"
@@ -29,14 +27,9 @@
         <item
             android:id="@+id/nav_find_translation_test"
             android:icon="@drawable/find_translation"
-            android:title="@string/find_translation_test"
+            android:title="@string/find_translation_test" />
 
-            />
-    </group>
-
-    <group>
-
-        <item android:title="" />
+        <item android:enabled="false" android:title="" />
 
         <item
             android:id="@+id/nav_edit_database"

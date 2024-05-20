@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="mocha_base">#1e1e2e</color>
     <color name="latte_base">#eff1f5</color>
-    <color name="dark_text">#4c4f69</color>
+    <color name="latte_text">#4c4f69</color>
 
+
+    <color name="mocha_base">#1e1e2e</color>
+    <color name="mocha_text">#cdd6f4</color>
+    <color name="dark_text">#4c4f69</color>
+    <color name="devlex_color">#8839ef</color>
 </resources>

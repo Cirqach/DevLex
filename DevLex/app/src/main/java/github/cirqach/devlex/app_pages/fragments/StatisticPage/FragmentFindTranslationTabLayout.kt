@@ -18,13 +18,10 @@ import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 private lateinit var dbh: DevLexDBHelper
-private lateinit var newArry: ArrayList<TestDataList>
+private lateinit var newArray: ArrayList<TestDataList>
 private lateinit var recyclerView: RecyclerView
-private lateinit var searchView: SearchView
 
 private lateinit var adapter: TestResultAdapter
 
@@ -33,32 +30,12 @@ class FragmentFindTranslationTabLayout : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_find_translation_tab_layout, container, false)
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentFindTranslationTabLayout().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +48,7 @@ class FragmentFindTranslationTabLayout : Fragment() {
         recyclerView.setHasFixedSize(true)
         displayWord()
 
-        adapter = TestResultAdapter(newArry)
+        adapter = TestResultAdapter(newArray)
         recyclerView.adapter = adapter
 
         val searchView: SearchView = view.findViewById(R.id.ftSearchView)
@@ -93,8 +70,8 @@ class FragmentFindTranslationTabLayout : Fragment() {
     private fun filterList(query: String?) {
         if (query != null) {
             val filteredList = ArrayList<TestDataList>()
-            for (i in newArry) {
-                if (i.score.lowercase(Locale.ROOT).contains(query) ||
+            for (i in newArray) {
+                if (i.score.toString().lowercase(Locale.ROOT).contains(query) ||
                     i.resultPercent.toString().lowercase(Locale.ROOT).contains(query)
                 ) {
                     filteredList.add(i)
@@ -110,13 +87,14 @@ class FragmentFindTranslationTabLayout : Fragment() {
     }
 
     private fun displayWord() {
-        val newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.Tables.FIND_TRANSLATION_TABLE)
-        newArry = ArrayList<TestDataList>()
-        while (newcursor!!.moveToNext()) {
-            val result = newcursor.getString(1)
-            val result_procent = newcursor.getInt(2)
-            newArry.add(TestDataList(result, result_procent))
+        val newCursor: Cursor? = dbh.readAll(DevLexDatabaseContract.Tables.FIND_TRANSLATION_TABLE)
+        newArray = ArrayList()
+        while (newCursor!!.moveToNext()) {
+            val result = newCursor.getInt(1)
+            val resultProcent = newCursor.getInt(2)
+            val questionCount = newCursor.getInt(3)
+            newArray.add(TestDataList("$result/$questionCount", resultProcent))
         }
-        recyclerView.adapter = TestResultAdapter(newArry)
+        recyclerView.adapter = TestResultAdapter(newArray)
     }
 }

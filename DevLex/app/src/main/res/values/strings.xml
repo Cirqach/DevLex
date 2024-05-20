@@ -20,14 +20,12 @@
     <string name="developer_ivanov_sergey">Developer: Ivanov Sergey</string>
     <string name="source_code_on">Source code on</string>
     <string name="start">Start</string>
-    <string name="github" translatable="false">Github</string>
+    <string name="github" translatable="false">GitHub</string>
     <string name="result">Result</string>
     <string name="hey_congratulations">Hey, Congratulations!</string>
     <string name="finish">Finish</string>
-    <string name="random_english_word">Random english word</string>
-    <string name="random_russian_word">Random russian word</string>
-    <string name="true_answer">True</string>
-    <string name="false_answer">False</string>
+    <string name="true_answer" translatable="false">True</string>
+    <string name="false_answer" translatable="false">False</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="find_translation_test">Find translation test</string>
@@ -44,8 +42,16 @@
     <string name="your_score_is_out_of">Your Score is %1$s out of %2$s.</string>
     <string name="putting_result_to_database" translatable="false">%1$s/%2$s</string>
     <string name="go_to_next_question">Go to next question</string>
-    <string name="refresh_database">Refresh database</string>
+    <string name="refresh_database">Refresh</string>
+    <string name="en" translatable="false">En</string>
+    <string name="ru" translatable="false">Ru</string>
+    <string name="is">is</string>
+    <string name="ru_en" translatable="false">Ru/En</string>
+    <string name="cant_use_zero">You can\'t use 0</string>
+    <string name="random_english_word">Random english word</string>
+    <string name="random_russian_word">Random russian word</string>
     <string name="language">Language</string>
-    <string name="en">En</string>
-    <string name="ru">Ru</string>
+    <string name="sure_want_delete">You sure you wan\\\'t to delete?</string>
+    <string name="definition_not_necessary">Definition(not necessary)</string>
+    <string name="cancel">Cancel</string>
 </resources>

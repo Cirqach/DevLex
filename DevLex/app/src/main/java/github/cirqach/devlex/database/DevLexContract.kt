@@ -16,6 +16,7 @@ class DevLexDatabaseContract {
         const val ID = BaseColumns._ID
         const val RESULT = "RESULT"
         const val RESULT_PROCENT = "RESULT_PROCENT"
+        const val QUESTION_COUNT = "QUESTION_COUNT"
     }
 
     object Tables : BaseColumns {

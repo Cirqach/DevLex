@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mocha_base"
-    tools:context=".app_pages.activity_result">
+    tools:context=".app_pages.ActivityResult">
 
 
     <TextView
@@ -17,7 +16,6 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="145dp"
         android:text="@string/result"
-        android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +31,6 @@
         android:layout_marginTop="63dp"
         android:layout_marginEnd="57dp"
         android:text="@string/hey_congratulations"
-        android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +44,6 @@
         android:layout_marginStart="102dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="70dp"
-        android:textColor="@android:color/secondary_text_dark"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -57,15 +53,15 @@
 
     <Button
         android:id="@+id/btn_finish"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="370dp"
+        android:layout_height="65dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/button_background_color"
+        android:backgroundTint="@color/button_background_color"
         android:text="@string/finish"
         android:textColor="@color/button_text_color"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

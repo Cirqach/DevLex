@@ -13,9 +13,9 @@ class DevLexAdapter(private var wordList: ArrayList<DataList>) :
     var onItemClick: ((DataList) -> Unit)? = null
 
     class DevLexViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tenglish_name: TextView = itemView.findViewById(R.id.english_name_textview)
-        val trussian_name: TextView = itemView.findViewById(R.id.russian_name_text_view)
-        val tdefinition: TextView = itemView.findViewById(R.id.word_definition_textview)
+        val tEnglishName: TextView = itemView.findViewById(R.id.english_name_textview)
+        val tRussianName: TextView = itemView.findViewById(R.id.russian_name_text_view)
+        val tDefinition: TextView = itemView.findViewById(R.id.word_definition_textview)
         val tid: TextView = itemView.findViewById(R.id.id_text_view)
     }
 
@@ -31,23 +31,24 @@ class DevLexAdapter(private var wordList: ArrayList<DataList>) :
     }
 
     override fun onBindViewHolder(holder: DevLexViewHolder, position: Int) {
-        val currentItem = wordList[position]
-        holder.tenglish_name.text = currentItem.english_name.toString()
-        holder.trussian_name.text = currentItem.russian_name.toString()
-        holder.tdefinition.text = currentItem.definition.toString()
-        holder.tid.text = currentItem.id.toString()
+        if (position < wordList.size) {
+            val currentItem = wordList[position]
+            holder.tEnglishName.text = currentItem.englishName
+            holder.tRussianName.text = currentItem.russianName
+            holder.tDefinition.text = currentItem.definition
+            holder.tid.text = currentItem.id
+        }
 
-        holder.itemView.setOnClickListener() {
-            onItemClick?.invoke(currentItem)
+        holder.itemView.setOnClickListener {
+            if (position < wordList.size) {
+                onItemClick?.invoke(wordList[position])
+            }
         }
     }
 
     fun setFilteredList(wordList: ArrayList<DataList>) {
         this.wordList = wordList
-        notifyItemRangeChanged(0, wordList.size) // Notify that all items have changed
-    }
-    fun updateItems(startIndex: Int, count: Int) {
-        notifyItemRangeChanged(startIndex, count)
+        notifyDataSetChanged() // Notify that the data has changed
     }
 
 

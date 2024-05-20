@@ -45,23 +45,6 @@ class FragmentTrueFalseTabLayout : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentTrueFalseTabLayout.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentTrueFalseTabLayout().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -96,7 +79,7 @@ class FragmentTrueFalseTabLayout : Fragment() {
         if (query != null) {
             val filteredList = ArrayList<TestDataList>()
             for (i in newArry) {
-                if (i.score.lowercase(Locale.ROOT).contains(query) ||
+                if (i.score.toString().lowercase(Locale.ROOT).contains(query) ||
                     i.resultPercent.toString().lowercase(Locale.ROOT).contains(query)
                 ) {
                     filteredList.add(i)
@@ -112,12 +95,13 @@ class FragmentTrueFalseTabLayout : Fragment() {
     }
 
     private fun displayWord() {
-        val newcursor: Cursor? = dbh.readAll(DevLexDatabaseContract.Tables.TRUE_FALSE_TABLE)
-        newArry = ArrayList<TestDataList>()
-        while (newcursor!!.moveToNext()) {
-            val result = newcursor.getString(1)
-            val result_procent = newcursor.getInt(2)
-            newArry.add(TestDataList(result, result_procent))
+        val newCursor: Cursor? = dbh.readAll(DevLexDatabaseContract.Tables.TRUE_FALSE_TABLE)
+        newArry = ArrayList()
+        while (newCursor!!.moveToNext()) {
+            val result = newCursor.getInt(1)
+            val resultProcent = newCursor.getInt(2)
+            val questionCount = newCursor.getInt(3)
+            newArry.add(TestDataList("$result/$questionCount", resultProcent))
         }
         recyclerView.adapter = TestResultAdapter(newArry)
     }

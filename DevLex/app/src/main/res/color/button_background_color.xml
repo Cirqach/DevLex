@@ -5,10 +5,10 @@
     <item android:color="#7287fd" android:state_enabled="false" />
 
     <!--When Button is in pressed state -->
-    <item android:color="#40a02b" android:state_pressed="true" />
+    <item android:color="#1e66f5" android:state_pressed="true" />
 
     <!--When Button is in selected state -->
-    <item android:color="#40a02b" android:state_selected="true" />
+    <item android:color="#1e66f5" android:state_selected="true" />
 
     <!--Default Background Color -->
     <item android:color="#7287fd" />

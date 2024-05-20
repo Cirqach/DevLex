@@ -15,12 +15,12 @@ class TabLayoutAdapter(
 
     override fun createFragment(position: Int): Fragment {
 
-        when (position) {
-            0 -> return FragmentFindTranslationTabLayout()
-            1 -> return FragmentFindWordTabLayout()
-            2 -> return FragmentTrueFalseTabLayout()
+        return when (position) {
+            0 -> FragmentFindTranslationTabLayout()
+            1 -> FragmentFindWordTabLayout()
+            2 -> FragmentTrueFalseTabLayout()
             else -> {
-                return FragmentFindTranslationTabLayout()
+                FragmentFindTranslationTabLayout()
             }
         }
     }

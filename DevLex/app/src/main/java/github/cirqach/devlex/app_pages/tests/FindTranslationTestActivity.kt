@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import github.cirqach.devlex.R
-import github.cirqach.devlex.app_pages.activity_result
+import github.cirqach.devlex.app_pages.ActivityResult
 import github.cirqach.devlex.database.DevLexDBHelper
 import github.cirqach.devlex.database.DevLexDatabaseContract
 import github.cirqach.devlex.database.FindTranslationTest.QuestionBaseHelper
@@ -34,7 +34,7 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
     private var questionsList: MutableList<QuestionBaseHelper.Question?> =
         mutableListOf() // Set to hold all questions
     private var questionsCount: Int = 0
-    private val TAG: String = "find translation test"
+    private val tag: String = "find translation test"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +45,10 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val tag = "find translation test"
+        Log.d(tag, "onCreate: starting find translation test ")
+
         dbh = DevLexDBHelper(this)
         questionsCount = intent.getIntExtra(
             "count_of_test",
@@ -55,11 +59,11 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         mQuestionsList = questionHelper.getQuestionsList(dbh, questionsCount) // Fetch all questions
-        Log.d(TAG, "onCreate: question base is $questionsList")
+        Log.d(this.tag, "onCreate: question base is $questionsList")
         binding = ActivityFindTranlationTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d(TAG, "onCreate: ${questionHelper.getQuestionsList(dbh, questionsCount)}")
+        Log.d(this.tag, "onCreate: ${questionHelper.getQuestionsList(dbh, questionsCount)}")
 
         setQuestion()
         binding.progressBar.max = questionsCount
@@ -70,9 +74,7 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setQuestion() {
-
-        val question =
-            mQuestionsList[mCurrentPosition - 1] // Getting the question from the list with the help of current position.
+        val question = mQuestionsList[mCurrentPosition - 1]
 
         defaultOptionsView()
 
@@ -82,12 +84,15 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnSubmit.text = getString(R.string.submit)
         }
 
+        // Update the progress bar's current value
         binding.progressBar.progress = mCurrentPosition
+        // Update the tvProgress text
         binding.tvProgress.text = getString(
             R.string.putting_result_to_database,
             mCurrentPosition.toString(),
-            binding.progressBar.max.toString()
+            mQuestionsList.size.toString()
         )
+
 
         if (question != null) {
             binding.tvQuestion.text = question.englishName
@@ -95,6 +100,11 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
             binding.tvOptionTwo.text = question.russianOption2
             binding.tvOptionThree.text = question.russianOption3
         }
+
+        // Enable answer buttons
+        binding.tvOptionOne.isEnabled = true
+        binding.tvOptionTwo.isEnabled = true
+        binding.tvOptionThree.isEnabled = true
     }
 
     private fun defaultOptionsView() {
@@ -149,25 +159,35 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
                         else -> {
 
                             val intent =
-                                Intent(this@FindTranslationTestActivity, activity_result::class.java)
+                                Intent(
+                                    this@FindTranslationTestActivity,
+                                    ActivityResult::class.java
+                                )
                             intent.putExtra("CORRECT_ANSWERS", mCorrectAnswers)
                             intent.putExtra("TOTAL_QUESTIONS", mQuestionsList.size)
                             if (dbh != null) {
                                 if (dbh?.saveDataToTest(
                                         DevLexDatabaseContract.Tables.FIND_TRANSLATION_TABLE,
-                                        "$mCorrectAnswers/$questionsCount",
-                                        (mCorrectAnswers.toDouble() / mQuestionsList.size * 100).toInt()
+                                        mCorrectAnswers,
+                                        (mCorrectAnswers.toDouble() / mQuestionsList.size * 100).toInt(),
+                                        questionsCount,
                                     ) == true
                                 ) {
                                     Log.d(
-                                        TAG,
-                                        "onClick: data saved $mCorrectAnswers + ${if (mQuestionsList.size != 0 && mCorrectAnswers != 0){(mQuestionsList.size / mCorrectAnswers * 100)}else{"0/${mQuestionsList.size}"}}"
+                                        tag,
+                                        "onClick: data saved $mCorrectAnswers + ${
+                                            if (mQuestionsList.size != 0 && mCorrectAnswers != 0) {
+                                                (mQuestionsList.size / mCorrectAnswers * 100)
+                                            } else {
+                                                "0/${mQuestionsList.size}"
+                                            }
+                                        }"
                                     )
                                 } else {
-                                    Log.d(TAG, "onClick: data not saved")
+                                    Log.d(tag, "onClick: data not saved")
                                 }
                             } else {
-                                Log.d(TAG, "onClick: dbh is null")
+                                Log.d(tag, "onClick: dbh is null")
                             }
 
 
@@ -179,14 +199,12 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                     val question = mQuestionsList[mCurrentPosition - 1]
 
-                    // This is to check if the answer is wrong
                     if (question!!.answer != mSelectedOptionPosition) {
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                     } else {
                         mCorrectAnswers++
                     }
 
-                    // This is for correct answer
                     answerView(question.answer, R.drawable.correct_option_border_bg)
 
                     if (mCurrentPosition == mQuestionsList.size) {
@@ -196,6 +214,11 @@ class FindTranslationTestActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                     mSelectedOptionPosition = 0
+
+                    // Disable answer buttons
+                    binding.tvOptionOne.isEnabled = false
+                    binding.tvOptionTwo.isEnabled = false
+                    binding.tvOptionThree.isEnabled = false
                 }
             }
         }

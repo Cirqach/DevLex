@@ -13,7 +13,7 @@
         android:layout_marginTop="70dp"
         android:text="@string/find_word_test"
         android:textColor="@color/dark_text"
-        android:textSize="20sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,9 +25,9 @@
         android:layout_marginTop="150dp"
         android:autofillHints="Count of rounds"
         android:ems="10"
+        android:textSize="20sp"
         android:hint="@string/count_of_rounds"
         android:inputType="number"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/find_word_fragment_text_view" />
@@ -40,7 +40,7 @@
         android:backgroundTint="@color/button_background_color"
         android:text="@string/start"
         android:textColor="@color/button_text_color"
-        android:textSize="20sp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/find_word_fragment_count_of_rounds_text_edit" />

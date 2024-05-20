@@ -12,19 +12,19 @@ import github.cirqach.devlex.R
 import github.cirqach.devlex.app_pages.fragments.ChangeDatabaseFragment
 import github.cirqach.devlex.app_pages.fragments.StatisticPage.StatisticFragment
 
-class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     private lateinit var drawerLayout: DrawerLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_real_main)
-        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        var action = supportActionBar
+        val action = supportActionBar
         action!!.title = ""
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
@@ -104,5 +104,6 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             onBackPressedDispatcher.onBackPressed()
         }
     }
+
 }
 

@@ -14,8 +14,6 @@ import github.cirqach.devlex.database.DevLexDBHelper
 class MainActivity : AppCompatActivity() {
 
 
-    val TAG = "MainActivity"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             val dbh = DevLexDBHelper(this)
             dbh.copyDatabase(this)
 
-            val toRealActivityIntent = Intent(this, RealMainActivity::class.java)
+            val toRealActivityIntent = Intent(this, github.cirqach.devlex.app_pages.RealMainActivity::class.java)
             startActivity(toRealActivityIntent)
         }
         val buttonGithub: Button? = findViewById(R.id.github_button)

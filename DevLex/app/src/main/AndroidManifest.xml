@@ -18,7 +18,7 @@
         android:theme="@style/Theme.DevLex"
         tools:targetApi="tiramisu">
         <activity
-            android:name=".app_pages.activity_result"
+            android:name=".app_pages.ActivityResult"
             android:exported="false" />
         <activity
             android:name=".app_pages.tests.TrueFalseTestActivity"
@@ -30,7 +30,7 @@
             android:name=".app_pages.tests.FindTranslationTestActivity"
             android:exported="false" />
         <activity
-            android:name=".app_pages.add_word_activity"
+            android:name=".app_pages.AddWordActivity"
             android:exported="false" />
         <activity
             android:name=".app_pages.RealMainActivity"
