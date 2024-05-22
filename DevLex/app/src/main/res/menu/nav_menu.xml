@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
+    tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
 
@@ -15,7 +14,9 @@
             android:icon="@android:drawable/ic_menu_recent_history"
             android:title="@string/history" />
 
-        <item android:enabled="false" android:title="" />
+        <item
+            android:enabled="false"
+            android:title="" />
         <item
             android:id="@+id/nav_true_false_test"
             android:icon="@drawable/true_false"
@@ -28,8 +29,13 @@
             android:id="@+id/nav_find_translation_test"
             android:icon="@drawable/find_translation"
             android:title="@string/find_translation_test" />
+        <item
+            android:id="@+id/hangman_test"
+            android:title="@string/hangman_game" />
 
-        <item android:enabled="false" android:title="" />
+        <item
+            android:enabled="false"
+            android:title="" />
 
         <item
             android:id="@+id/nav_edit_database"

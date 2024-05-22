@@ -18,6 +18,9 @@
         android:theme="@style/Theme.DevLex"
         tools:targetApi="tiramisu">
         <activity
+            android:name=".app_pages.tests.HangmanGame"
+            android:exported="false" />
+        <activity
             android:name=".app_pages.ActivityResult"
             android:exported="false" />
         <activity

@@ -1,4 +1,4 @@
-package github.cirqach.devlex.app_pages.fragments.StatisticPage
+package github.cirqach.devlex.app_pages.fragments.StatisticPage.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -28,7 +28,7 @@ class TestResultAdapter(private var resultList: MutableList<TestDataList>) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: TestResultsViewHolder, position: Int) {
         val currentItem = resultList[position]
-        holder.score.text = currentItem.score.toString()
+        holder.score.text = currentItem.score
         holder.procentScore.text = currentItem.resultPercent.toString() + "%"
 
         holder.itemView.setOnClickListener {

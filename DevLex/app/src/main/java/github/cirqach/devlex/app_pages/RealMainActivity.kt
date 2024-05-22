@@ -11,8 +11,9 @@ import com.google.android.material.navigation.NavigationView
 import github.cirqach.devlex.R
 import github.cirqach.devlex.app_pages.fragments.ChangeDatabaseFragment
 import github.cirqach.devlex.app_pages.fragments.StatisticPage.StatisticFragment
+import github.cirqach.devlex.app_pages.fragments.tests.HangmanGameFragment
 
-class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
 
 
@@ -89,6 +90,12 @@ class RealMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 .replace(
                     R.id.fragment_container,
                     ChangeDatabaseFragment()
+                ).commit()
+
+            R.id.hangman_test -> supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.fragment_container,
+                    HangmanGameFragment()
                 ).commit()
         }
         drawerLayout.closeDrawer(GravityCompat.START)

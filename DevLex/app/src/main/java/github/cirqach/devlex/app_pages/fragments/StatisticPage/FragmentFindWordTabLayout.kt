@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.cirqach.devlex.R
+import github.cirqach.devlex.app_pages.fragments.StatisticPage.adapters.TestResultAdapter
 import github.cirqach.devlex.database.DevLexDBHelper
 import github.cirqach.devlex.database.DevLexDatabaseContract
 import github.cirqach.devlex.database.TestDataList
@@ -70,7 +71,7 @@ class FragmentFindWordTabLayout : Fragment() {
         if (query != null) {
             val filteredList = ArrayList<TestDataList>()
             for (i in newArry) {
-                if (i.score.toString().lowercase(Locale.ROOT).contains(query) ||
+                if (i.score.lowercase(Locale.ROOT).contains(query) ||
                     i.resultPercent.toString().lowercase(Locale.ROOT).contains(query)
                 ) {
                     filteredList.add(i)

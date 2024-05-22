@@ -212,39 +212,40 @@ class TrueFalseTestActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-        private fun answerView(answer: Int, drawableView: Int) {
 
-            when (answer) {
+    private fun answerView(answer: Int, drawableView: Int) {
 
-                1 -> {
-                    binding.tvOptionTrue.background = ContextCompat.getDrawable(
-                        this@TrueFalseTestActivity,
-                        drawableView
-                    )
-                }
+        when (answer) {
 
-                2 -> {
-                    binding.tvOptionFalse.background = ContextCompat.getDrawable(
-                        this@TrueFalseTestActivity,
-                        drawableView
-                    )
-                }
+            1 -> {
+                binding.tvOptionTrue.background = ContextCompat.getDrawable(
+                    this@TrueFalseTestActivity,
+                    drawableView
+                )
+            }
+
+            2 -> {
+                binding.tvOptionFalse.background = ContextCompat.getDrawable(
+                    this@TrueFalseTestActivity,
+                    drawableView
+                )
             }
         }
+    }
 
-        private fun selectedOptionView(tv: TextView, selectedOption: Boolean) {
+    private fun selectedOptionView(tv: TextView, selectedOption: Boolean) {
 
-            defaultOptionsView()
+        defaultOptionsView()
 
-            mSelectedOptionPosition = if (selectedOption) 1 else 2
+        mSelectedOptionPosition = if (selectedOption) 1 else 2
 
-            tv.setTextColor(
-                Color.parseColor("#363A43")
-            )
-            tv.setTypeface(tv.typeface, Typeface.BOLD)
-            tv.background = ContextCompat.getDrawable(
-                this@TrueFalseTestActivity,
-                R.drawable.selected_option_border_bg
-            )
-        }
+        tv.setTextColor(
+            Color.parseColor("#363A43")
+        )
+        tv.setTypeface(tv.typeface, Typeface.BOLD)
+        tv.background = ContextCompat.getDrawable(
+            this@TrueFalseTestActivity,
+            R.drawable.selected_option_border_bg
+        )
+    }
 }

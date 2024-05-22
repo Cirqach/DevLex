@@ -41,4 +41,9 @@
     <string name="definition_not_necessary">Определение(не обязательно)</string>
     <string name="sure_want_delete">Вы действительно хотите удалить запись?</string>
     <string name="cancel">Отмена</string>
+    <string name="player">Не потеряйте человека</string>
+    <string name="play">Начать игру</string>
+    <string name="guess">Ответ</string>
+    <string name="trystring">Начать</string>
+    <string name="hangman_game">Игра \"Hangman\"</string>
 </resources>

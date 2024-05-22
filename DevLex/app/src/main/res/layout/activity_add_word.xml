@@ -80,8 +80,8 @@
         android:focusable="true"
         android:scaleType="fitCenter"
         android:text="@string/back"
-        android:textSize="20sp"
         android:textColor="@color/latte_base"
+        android:textSize="20sp"
         app:icon="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
 

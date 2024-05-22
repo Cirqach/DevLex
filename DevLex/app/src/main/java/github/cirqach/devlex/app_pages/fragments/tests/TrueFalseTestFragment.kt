@@ -28,13 +28,14 @@ class TrueFalseTestFragment : Fragment() {
         val button = view.findViewById<Button>(R.id.tft_fragment_start_button)
         button.setOnClickListener {
 
-                val tag = "True false test fragment"
-                Log.d(tag, "onViewCreated: handle button click")
-                val questionsCountEditText =
-                    view.findViewById<EditText>(R.id.true_false_test_fragment_edit_text)
-            if (questionsCountEditText.text.toString().toInt() <= 0){
-                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT).show()
-            }else {
+            val tag = "True false test fragment"
+            Log.d(tag, "onViewCreated: handle button click")
+            val questionsCountEditText =
+                view.findViewById<EditText>(R.id.true_false_test_fragment_edit_text)
+            if (questionsCountEditText.text.toString().toInt() <= 0) {
+                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT)
+                    .show()
+            } else {
                 val questionsCount = questionsCountEditText.text.toString().toIntOrNull()
                 Log.d(tag, "onViewCreated: question count = $questionsCount")
                 val intent = Intent(

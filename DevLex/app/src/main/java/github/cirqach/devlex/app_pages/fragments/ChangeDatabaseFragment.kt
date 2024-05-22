@@ -1,8 +1,5 @@
 package github.cirqach.devlex.app_pages.fragments
 
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.os.Build
@@ -17,7 +14,6 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -125,7 +121,7 @@ class ChangeDatabaseFragment : Fragment() {
         }
     }
 
-    fun deleteValues() {
+    private fun deleteValues() {
         dbh.deleteData(
             DevLexDatabaseContract.LexiconEntry.TABLE_NAME,
             idTextView.text.toString()
@@ -180,7 +176,6 @@ class ChangeDatabaseFragment : Fragment() {
             idTextView.text = position.id
         }
     }
-
 
 
 }

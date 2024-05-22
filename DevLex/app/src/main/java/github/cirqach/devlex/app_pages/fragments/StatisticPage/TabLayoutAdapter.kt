@@ -10,7 +10,7 @@ class TabLayoutAdapter(
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
-        return 3
+        return 4
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -19,6 +19,7 @@ class TabLayoutAdapter(
             0 -> FragmentFindTranslationTabLayout()
             1 -> FragmentFindWordTabLayout()
             2 -> FragmentTrueFalseTabLayout()
+            3 -> FragmentHangmanGameTabLayout()
             else -> {
                 FragmentFindTranslationTabLayout()
             }

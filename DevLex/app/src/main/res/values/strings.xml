@@ -54,4 +54,15 @@
     <string name="sure_want_delete">You sure you wan\\\'t to delete?</string>
     <string name="definition_not_necessary">Definition(not necessary)</string>
     <string name="cancel">Cancel</string>
+    <string name="turn" translatable="false">Turn:</string>
+    <string name="player">Don\'t let the dude die</string>
+    <string name="play">Start Game</string>
+    <string name="hangman" translatable="false">Hangman</string>
+    <string name="guess">Guess</string>
+    <string name="todo" translatable="false">TODO</string>
+    <string name="trystring">try</string>
+    <string name="hangman_game">Hangman game</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="a_z"><![CDATA[A>Z]]></string>
 </resources>

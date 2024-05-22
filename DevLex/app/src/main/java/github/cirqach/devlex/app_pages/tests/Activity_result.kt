@@ -31,7 +31,12 @@ class ActivityResult : AppCompatActivity() {
             totalQuestions.toString()
         )
         binding.btnFinish.setOnClickListener {
-            startActivity(Intent(this@ActivityResult, github.cirqach.devlex.app_pages.RealMainActivity::class.java))
+            startActivity(
+                Intent(
+                    this@ActivityResult,
+                    github.cirqach.devlex.app_pages.RealMainActivity::class.java
+                )
+            )
         }
 
 

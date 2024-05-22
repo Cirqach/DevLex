@@ -1,22 +1,13 @@
 package github.cirqach.devlex.app_pages.fragments.StatisticPage
 
-import android.content.Context
-import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import github.cirqach.devlex.R
-import github.cirqach.devlex.database.DataList
-import github.cirqach.devlex.database.DevLexDBHelper
-import github.cirqach.devlex.database.DevLexDatabaseContract
-import github.cirqach.devlex.database.FindTranslationTest.QuestionBaseHelper
-import github.cirqach.devlex.database.TestDataList
-import java.util.ArrayList
 
 class StatisticFragment : Fragment() {
 
@@ -46,6 +37,7 @@ class StatisticFragment : Fragment() {
         tabLayout.addTab(tabLayout.newTab().setText("Find translation"))
         tabLayout.addTab(tabLayout.newTab().setText("Find word"))
         tabLayout.addTab(tabLayout.newTab().setText("True/False"))
+        tabLayout.addTab(tabLayout.newTab().setText("Hangman game"))
 
 
         viewPager2.adapter = tabLayoutAdapter

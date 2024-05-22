@@ -39,9 +39,10 @@ class FindTranslationTestFragment : Fragment() {
 
         startButton.setOnClickListener {
             Log.d(tag, "onViewCreated: handle button click")
-            if (questionsCountEditText.text.toString().toInt() <= 0){
-                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT).show()
-            }else {
+            if (questionsCountEditText.text.toString().toInt() <= 0) {
+                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT)
+                    .show()
+            } else {
                 val questionsCount = questionsCountEditText.text.toString().toIntOrNull()
                 Log.d(tag, "onViewCreated: question count = $questionsCount")
                 val intent = Intent(

@@ -13,7 +13,6 @@ class DevLexDatabaseContract {
     }
 
     object Test : BaseColumns {
-        const val ID = BaseColumns._ID
         const val RESULT = "RESULT"
         const val RESULT_PROCENT = "RESULT_PROCENT"
         const val QUESTION_COUNT = "QUESTION_COUNT"
@@ -23,5 +22,12 @@ class DevLexDatabaseContract {
         const val FIND_WORD_TABLE = "test_find_word_table"
         const val FIND_TRANSLATION_TABLE = "test_find_translation_table"
         const val TRUE_FALSE_TABLE = "test_true_false_table"
+    }
+
+    object HangmanGame : BaseColumns {
+        const val TABLE_NAME = "hangman_game"
+        const val ID = "id"
+        const val WORD = "word"
+        const val RESULT = "result"
     }
 }

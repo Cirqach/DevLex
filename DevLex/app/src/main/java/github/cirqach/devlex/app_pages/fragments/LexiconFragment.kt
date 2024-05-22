@@ -41,6 +41,7 @@ class LexiconFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +49,11 @@ class LexiconFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lexicon, container, false)
     }
+
     companion object {
         const val ADD_WORD_REQUEST_CODE = 1
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val floatingActionButton: FloatingActionButton =
@@ -75,7 +78,7 @@ class LexiconFragment : Fragment() {
         sortDisplayWordAscendingEnglish()
         displayList()
 
-        searchView = view.findViewById<SearchView>(R.id.searchView)!!
+        searchView = view.findViewById(R.id.searchView)!!
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -101,7 +104,7 @@ class LexiconFragment : Fragment() {
         }
         var isReverseSortRussian = false
         val sortButtonRussian = view.findViewById<Button>(R.id.sortButtonRussian)
-        sortButtonRussian.setOnClickListener{
+        sortButtonRussian.setOnClickListener {
             if (isReverseSortRussian) {
                 sortDisplayWordAscendingRussian()
                 displayList()
@@ -123,7 +126,14 @@ class LexiconFragment : Fragment() {
             val uRussianName = newCursor.getString(2)
             val uDefinition = newCursor.getString(3)
             val uid = newCursor.getString(0)
-            newArry.add(DataList(uEnglishName.lowercase(Locale.ROOT), uRussianName.lowercase(Locale.ROOT), uDefinition, uid))
+            newArry.add(
+                DataList(
+                    uEnglishName.lowercase(Locale.ROOT),
+                    uRussianName.lowercase(Locale.ROOT),
+                    uDefinition,
+                    uid
+                )
+            )
         }
         newCursor.close()
 
@@ -151,6 +161,7 @@ class LexiconFragment : Fragment() {
 
         adapter.setFilteredList(filteredList)
     }
+
     private fun displayList() {
         adapter.setFilteredList(newArry)
     }

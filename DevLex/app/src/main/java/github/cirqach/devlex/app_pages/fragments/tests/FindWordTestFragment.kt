@@ -29,12 +29,13 @@ class FindWordTestFragment : Fragment() {
         button.setOnClickListener {
             val tag = "Find word test fragment"
 
-                Log.d(tag, "onViewCreated: handle button click")
-                val questionsCountEditText =
-                    view.findViewById<EditText>(R.id.find_word_fragment_count_of_rounds_text_edit)
-            if (questionsCountEditText.text.toString().toInt() <= 0){
-                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT).show()
-            }else {
+            Log.d(tag, "onViewCreated: handle button click")
+            val questionsCountEditText =
+                view.findViewById<EditText>(R.id.find_word_fragment_count_of_rounds_text_edit)
+            if (questionsCountEditText.text.toString().toInt() <= 0) {
+                Toast.makeText(view.context, getString(R.string.cant_use_zero), Toast.LENGTH_SHORT)
+                    .show()
+            } else {
                 val questionsCount = questionsCountEditText.text.toString().toIntOrNull()
                 Log.d(tag, "onViewCreated: question count = $questionsCount")
                 val intent = Intent(

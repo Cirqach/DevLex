@@ -177,7 +177,7 @@ class DevLexDBHelper(context: Context?) :
         tableName: String,
         result: Int,
         resultProcent: Int,
-        countOfQuestions:Int
+        countOfQuestions: Int
     ): Boolean {
         Log.d(TAG, "saveDataToTest: saving $tableName + $result + $resultProcent")
         val p0 = this.writableDatabase
@@ -235,7 +235,18 @@ class DevLexDBHelper(context: Context?) :
         return exists
     }
 
-
+    fun saveHangmanResult(
+        result: String,
+        word: String
+    ): Boolean {
+        val p0 = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(DevLexDatabaseContract.HangmanGame.RESULT, result)
+        contentValues.put(DevLexDatabaseContract.HangmanGame.WORD, word)
+        val returnResult =
+            p0.insert(DevLexDatabaseContract.HangmanGame.TABLE_NAME, null, contentValues)
+        return returnResult != (-1).toLong()
+    }
 }
 
 
