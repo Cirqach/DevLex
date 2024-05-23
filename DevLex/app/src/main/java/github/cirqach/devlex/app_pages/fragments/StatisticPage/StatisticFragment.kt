@@ -34,10 +34,10 @@ class StatisticFragment : Fragment() {
 
         tabLayoutAdapter = TabLayoutAdapter(parentFragmentManager, lifecycle)
 
-        tabLayout.addTab(tabLayout.newTab().setText("Find translation"))
-        tabLayout.addTab(tabLayout.newTab().setText("Find word"))
-        tabLayout.addTab(tabLayout.newTab().setText("True/False"))
-        tabLayout.addTab(tabLayout.newTab().setText("Hangman game"))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.find_translation_test3)))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.find_word_test2)))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.true_false_test2)))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.hangman_game2)))
 
 
         viewPager2.adapter = tabLayoutAdapter

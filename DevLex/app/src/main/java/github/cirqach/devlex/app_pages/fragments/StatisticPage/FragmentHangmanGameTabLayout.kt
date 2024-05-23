@@ -73,7 +73,7 @@ class FragmentHangmanGameTabLayout : Fragment() {
                 }
             }
             if (filteredList.isEmpty()) {
-                Toast.makeText(requireView().context, "No data found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireView().context, getString(R.string.no_data_found), Toast.LENGTH_SHORT).show()
             } else {
                 adapter.setFilteredList(filteredList)
 

@@ -17,8 +17,6 @@ import github.cirqach.devlex.database.DevLexDatabaseContract
 import github.cirqach.devlex.database.TestDataList
 import java.util.Locale
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 private lateinit var dbh: DevLexDBHelper
 private lateinit var newArry: ArrayList<TestDataList>
@@ -26,16 +24,6 @@ private lateinit var recyclerView: RecyclerView
 private lateinit var adapter: TestResultAdapter
 
 class FragmentTrueFalseTabLayout : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +74,7 @@ class FragmentTrueFalseTabLayout : Fragment() {
                 }
             }
             if (filteredList.isEmpty()) {
-                Toast.makeText(requireView().context, "No data found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireView().context, getString(R.string.no_data_found), Toast.LENGTH_SHORT).show()
             } else {
                 adapter.setFilteredList(filteredList)
 

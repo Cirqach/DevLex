@@ -25,14 +25,14 @@
     <string name="delete">Удалить</string>
     <string name="find_translation_test">Тест \"Найди перевод\"</string>
     <string name="count_of_rounds">Колличество раундов</string>
-    <string name="find_word_test">Тест \"Найти слово\"</string>
+    <string name="find_word_test">Тест \"Найди слово\"</string>
     <string name="history">История</string>
     <string name="statistic">Статистика</string>
     <string name="average_procent_score">"Средний результат: "</string>
     <string name="average_score">"Средний счет: "</string>
     <string name="true_false_test">Тест \"True/False\"</string>
     <string name="lexicon">Словарь</string>
-    <string name="change_database">Изменить базу данных</string>
+    <string name="change_database">Изменить словарь</string>
     <string name="your_score_is_out_of">Ваш счет %1$s из %2$s.</string>
     <string name="go_to_next_question">К следующему вопросу</string>
     <string name="refresh_database">Обновить список</string>
@@ -46,4 +46,17 @@
     <string name="guess">Ответ</string>
     <string name="trystring">Начать</string>
     <string name="hangman_game">Игра \"Hangman\"</string>
+    <string name="good_gues">Хороший ответ</string>
+    <string name="congratulations">Поздравляем!</string>
+    <string name="boo_you_hanged_a_man">Вы проиграли!</string>
+    <string name="do_you_want_to_play_again">Хотите сыграть ещё раз?</string>
+    <string name="let_s_go">Ещё раз</string>
+    <string name="new_game_started">Новая игра началась</string>
+    <string name="no">Нет</string>
+    <string name="no_data_found">Ничего не найдено</string>
+    <string name="answer">Ответить</string>
+    <string name="find_translation_test2">Find translation\n</string>
+    <string name="find_word_test2">Найди слово</string>
+    <string name="hangman_game2">Найди перевод</string>
+    <string name="find_translation_test3">Найди перевод</string>
 </resources>

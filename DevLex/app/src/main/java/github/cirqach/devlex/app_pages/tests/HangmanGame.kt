@@ -65,7 +65,7 @@ class HangmanGame : AppCompatActivity() {
                     correctGuesses.add(pGuess)
                     refactorSecret()
 
-                    Toast.makeText(applicationContext, "Good guess!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.good_gues), Toast.LENGTH_SHORT).show()
                     checkWin()
                     return
                 }
@@ -128,7 +128,7 @@ class HangmanGame : AppCompatActivity() {
         if (everythingGuessed) {
             winDialogPopUp(true)
             val dbh = DevLexDBHelper(this)
-            dbh.saveHangmanResult("win", secretWord)
+            dbh.saveHangmanResult("win", copySecretWord)
         }
     }
 
@@ -136,13 +136,13 @@ class HangmanGame : AppCompatActivity() {
     private fun winDialogPopUp(won: Boolean) {
         val builder = AlertDialog.Builder(this@HangmanGame)
         if (won) {
-            builder.setTitle("Congratulations!")
+            builder.setTitle(getString(R.string.congratulations))
         } else {
-            builder.setTitle("Boo! You hanged a man!")
+            builder.setTitle(getString(R.string.boo_you_hanged_a_man))
         }
-        builder.setMessage("Do you want to play again?")
+        builder.setMessage(getString(R.string.do_you_want_to_play_again))
 
-        builder.setPositiveButton("Let's go") { _, _ ->
+        builder.setPositiveButton(getString(R.string.let_s_go)) { _, _ ->
 
             // This one below is in main view more readable
             val dbHelper = DevLexDBHelper(this)
@@ -150,18 +150,17 @@ class HangmanGame : AppCompatActivity() {
             secretWord = db.getQuestionsList(dbHelper, 10)[Random().nextInt(10) + 1].toString()
             prepGame()
 
-            Toast.makeText(applicationContext, "New game started!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,
+                getString(R.string.new_game_started), Toast.LENGTH_SHORT).show()
 
         }
-        builder.setNegativeButton("No") { _, _ ->
+        builder.setNegativeButton(getString(R.string.no)) { _, _ ->
             finish()
         }
         val dialog: AlertDialog = builder.create()
         dialog.show()
 
-        // Save the word to the database, regardless of whether the player wins or loses
-        val dbh = DevLexDBHelper(this)
-        dbh.saveHangmanResult(if (won) "win" else "lose", secretWord)
+
     }
 
     private fun prepGame() {
@@ -175,5 +174,9 @@ class HangmanGame : AppCompatActivity() {
         }
 
         toBeGuessed.text = secretDisplay
+        val dbHelper = DevLexDBHelper(this)
+        val db = HangmanHelper()
+        secretWord = db.getQuestionsList(dbHelper, 10)[Random().nextInt(10)].toString()
+        copySecretWord = secretWord
     }
 }

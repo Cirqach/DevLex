@@ -64,5 +64,19 @@
     <string name="hangman_game">Hangman game</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="a_z"><![CDATA[A>Z]]></string>
+    <string name="a_z" translatable="false"><![CDATA[A>Z]]></string>
+    <string name="good_gues">Good guess!</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="boo_you_hanged_a_man">Boo! You hanged a man!</string>
+    <string name="do_you_want_to_play_again">Do you want to play again?</string>
+    <string name="let_s_go">Let\'s go</string>
+    <string name="new_game_started">New game started!</string>
+    <string name="no">No</string>
+    <string name="no_data_found">No data found</string>
+    <string name="answer">Answer</string>
+    <string name="find_translation_test2">Find translation\n</string>
+    <string name="find_word_test2">Find word</string>
+    <string name="true_false_test2" translatable="false">True/False</string>
+    <string name="hangman_game2">\"Hangman\"</string>
+    <string name="find_translation_test3">Find translation</string>
 </resources>
