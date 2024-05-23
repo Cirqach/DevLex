@@ -41,7 +41,7 @@ class HangmanGameAdapter(private var resultList: MutableList<HangmanGameDataList
 
     fun setFilteredList(resultList: ArrayList<HangmanGameDataList>) {
         this.resultList = resultList
-        notifyItemRangeChanged(0, resultList.size)
+        notifyDataSetChanged() // Notify that the data has changed
     }
 
 }

@@ -42,7 +42,7 @@ class TestResultAdapter(private var resultList: MutableList<TestDataList>) :
 
     fun setFilteredList(resultList: ArrayList<TestDataList>) {
         this.resultList = resultList
-        notifyItemRangeChanged(0, resultList.size)
+        notifyDataSetChanged() // Notify that the data has changed
     }
 
 }

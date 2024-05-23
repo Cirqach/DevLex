@@ -24,10 +24,7 @@ class FragmentHangmanGameTabLayout : Fragment() {
     private lateinit var newArry: ArrayList<HangmanGameDataList>
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: HangmanGameAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val TAG = "FragmentHangmanGameTabLayout"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +36,7 @@ class FragmentHangmanGameTabLayout : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(tag, "onViewCreated: view created")
+        Log.d(TAG, "onViewCreated: view created")
         recyclerView = view.findViewById(R.id.ftRecyclerView9999)
         dbh = DevLexDBHelper(view.context)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -90,7 +87,7 @@ class FragmentHangmanGameTabLayout : Fragment() {
         newArry = ArrayList()
         while (newCursor!!.moveToNext()) {
             val result = newCursor.getString(0)
-            val word = newCursor.getInt(2)
+            val word = newCursor.getString(2)
             newArry.add(HangmanGameDataList(result, "word you guessed $word"))
         }
         Log.d(

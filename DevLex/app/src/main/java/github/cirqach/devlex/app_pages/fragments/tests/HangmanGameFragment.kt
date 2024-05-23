@@ -2,6 +2,7 @@ package github.cirqach.devlex.app_pages.fragments.tests
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import github.cirqach.devlex.database.HangmanGame.HangmanHelper
 import java.util.Random
 
 class HangmanGameFragment : Fragment() {
-
+private val TAG = "HangmanGameFragment"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +35,7 @@ class HangmanGameFragment : Fragment() {
 
             val rand = Random().nextInt(guessWordsArray.size)
             val secretWord = guessWordsArray[rand]
-
+            Log.d(TAG, "onViewCreated: secret word is $secretWord")
             intent.putExtra("secretWord", secretWord)
             activity?.startActivity(intent)
         }

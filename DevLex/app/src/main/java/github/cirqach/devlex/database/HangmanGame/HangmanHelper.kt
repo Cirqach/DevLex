@@ -7,12 +7,11 @@ import kotlin.random.Random
 
 class HangmanHelper {
 
-    private val tag = "hangman game"
-
+    private val TAG = "Hangman Helper"
 
     fun getQuestionsList(dbh: DevLexDBHelper?, questionsCount: Int): MutableList<String?> {
         if (dbh == null) {
-            Log.d(tag, "dbh is null")
+            Log.d(TAG, "dbh is null")
             return mutableListOf(null) // Return an empty list with a single null element to indicate failure
         }
 
@@ -22,7 +21,7 @@ class HangmanHelper {
         )
 
         if (tableRowCount == 0) {
-            Log.d("getQuestionsList", "No questions found in the database")
+            Log.d(TAG, "No questions found in the database")
             return mutableListOf(null) // Return an empty list with a single null element to indicate failure
         }
 
@@ -39,18 +38,18 @@ class HangmanHelper {
 
         if (questionsList.size < questionsCount) {
             Log.d(
-                "getQuestionsList",
+                TAG,
                 "Retrieved only ${questionsList.size} questions out of requested $questionsCount"
             )
         }
-
+        Log.d(TAG, "getQuestionsList: returning $questionsList")
         return questionsList
     }
 
 
     private fun getRandomQuestion(dbh: DevLexDBHelper?): String? {
         if (dbh == null) {
-            Log.d("getRandomQuestion", "dbh is null")
+            Log.d(TAG, "dbh is null")
             return null
         }
 
@@ -60,7 +59,7 @@ class HangmanHelper {
         )
 
         if (tableRowCount == 0) {
-            Log.d("getRandomQuestion", "No questions found in the database")
+            Log.d(TAG, "No questions found in the database")
             return null
         }
 

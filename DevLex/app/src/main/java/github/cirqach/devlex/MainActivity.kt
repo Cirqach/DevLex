@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import github.cirqach.devlex.app_pages.RealMainActivity
 import github.cirqach.devlex.database.DevLexDBHelper
 
 
@@ -30,8 +31,7 @@ class MainActivity : AppCompatActivity() {
             val dbh = DevLexDBHelper(this)
             dbh.copyDatabase(this)
 
-            val toRealActivityIntent =
-                Intent(this, github.cirqach.devlex.app_pages.RealMainActivity::class.java)
+            val toRealActivityIntent = Intent(this, RealMainActivity::class.java)
             startActivity(toRealActivityIntent)
         }
         val buttonGithub: Button? = findViewById(R.id.github_button)
@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
             i.data = Uri.parse(url)
             startActivity(i)
         }
+
+
     }
 
 }
