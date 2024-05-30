@@ -51,16 +51,20 @@ class AddWordActivity : AppCompatActivity() {
             val saveData = db.addDataToLexicon(englishNameText, russiaNameText, definitionText)
 
             if (TextUtils.isEmpty(englishNameText) || TextUtils.isEmpty(russiaNameText)) {
-                Toast.makeText(this, "You can't leave empty field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    "You can't leave empty field",
+                    Toast.LENGTH_SHORT).show()
             } else if (saveData) {
-                Toast.makeText(this, "Word added to lexicon", Toast.LENGTH_SHORT).show()
-
-                // Set result and finish activity
+                Toast.makeText(this,
+                    "Word added to lexicon",
+                    Toast.LENGTH_SHORT).show()
                 val intent = Intent()
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             } else {
-                Toast.makeText(this, "This words already exist", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    "This words already exist",
+                    Toast.LENGTH_SHORT).show()
             }
         }
 

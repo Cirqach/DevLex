@@ -48,27 +48,17 @@ class DevLexDBHelper(context: Context?) :
             if (!checkDataBase(context)) {
                 Log.d(TAG, "copyDatabase: database doesn't exist")
                 Log.d(TAG, "copyDatabase: starting copying")
-
-                // Open your local db as the input stream
                 val myInput: InputStream = context.assets!!.open(DATABASE_NAME)
-
                 val outputFile = context.getDatabasePath(DATABASE_NAME)
-
-                // Open the empty db as the output stream (automatically goes to /databases/)
                 val myOutput: OutputStream = FileOutputStream(outputFile)
-
-                // Transfer byte to byte from input to output
                 val buffer = ByteArray(1024)
                 var length: Int
                 while (myInput.read(buffer).also { length = it } > 0) {
                     myOutput.write(buffer, 0, length)
                 }
-
-                // Close streams
                 myOutput.flush()
                 myOutput.close()
                 myInput.close()
-
                 if (checkDataBase(context)) {
                     Log.d(TAG, "copyDatabase: database copying successful")
                 } else {
@@ -119,10 +109,8 @@ class DevLexDBHelper(context: Context?) :
     fun deleteData(tableName: String, id: String) {
         val db = this.writableDatabase
         Log.d(TAG, "deleteData: trying deleting")
-        // delete the data from the table
         db.delete(tableName, "ID = ?", arrayOf(id))
         Log.d(TAG, "deleteData: item with $id delete, i perhaps")
-        // close the database connection
         db.close()
     }
 
@@ -132,25 +120,16 @@ class DevLexDBHelper(context: Context?) :
         definition: String,
         id: String
     ) {
-        Log.d(TAG, "Start saving data to Lexicon")
-
-        // 1. Check for valid database access:
         val db = writableDatabase
         if (db == null || !db.isOpen) {
-            Log.d(TAG, "Database not open for update")
-            return  // Exit the function if database is unavailable
+            return
         }
-
         try {
-            // 2. Prepare content values:
             val contentValues = ContentValues().apply {
                 put(DevLexDatabaseContract.LexiconEntry.ENGLISH_NAME, englishName)
                 put(DevLexDatabaseContract.LexiconEntry.RUSSIAN_NAME, russianName)
                 put(DevLexDatabaseContract.LexiconEntry.WORD_DEFENITION, definition)
             }
-            Log.d("save data fun", "saveData: content values = $contentValues")
-
-            // 3. Update the database:
             val whereClause = "${DevLexDatabaseContract.LexiconEntry.ID} = ?"
             val whereArgs = arrayOf(id)
             val rowsUpdated = db.update(
@@ -159,16 +138,9 @@ class DevLexDBHelper(context: Context?) :
                 whereClause,
                 whereArgs
             )
-
-            Log.d(TAG, "Rows updated: $rowsUpdated")
-            if (rowsUpdated == 0) {
-                Log.d(TAG, "No rows updated, data might be unchanged or entry not found")
-            }
         } catch (e: Exception) {
             Log.e(TAG, "Error saving data: $e")
-            // Handle potential exceptions during database operations (optional)
         } finally {
-            // 4. Always close the database connection:
             db.close()
         }
     }
@@ -195,11 +167,8 @@ class DevLexDBHelper(context: Context?) :
             "SELECT * FROM $tableName WHERE ${DevLexDatabaseContract.LexiconEntry.ID} = $id"
         val cursor = db.rawQuery(query, null)
         cursor.moveToFirst()
-
-        if (id != 0) { // Handle both null and non-existent IDs
+        if (id != 0) {
             if (cursor.moveToFirst()) {
-                val cursorId =
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.ID))
                 val englishName =
                     cursor.getString(cursor.getColumnIndexOrThrow(DevLexDatabaseContract.LexiconEntry.ENGLISH_NAME))
                 val russianName =
@@ -211,15 +180,9 @@ class DevLexDBHelper(context: Context?) :
                 cursor.close()
                 return result
             } else {
-                Log.d(
-                    TAG,
-                    "getDataByIdFromLexicon: Entry with ID $id not found"
-                ) // More specific message
                 cursor.close()
-                return null // Or an empty DataList if preferred
+                return null
             }
-        } else {
-            Log.d(TAG, "getDataByIdFromLexicon: ID is null")
         }
         cursor.close()
         return null
